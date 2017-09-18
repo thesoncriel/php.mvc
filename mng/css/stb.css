@@ -1,0 +1,120 @@
+.stb{
+	font-family: "나눔 고딕", "나눔고딕", "맑은 고딕", "맑은고딕", "돋움", "arial-black", sans-serif;
+}
+.navbar-default .navbar-brand{
+	font-weight: bold;
+}
+.sortable-wrap{
+	position: relative;
+	font-size: 10pt;
+}
+.broadcast-schedule{
+	width: 100%;
+	height: 2280px;
+	border: 1px solid #ccc;
+	margin-bottom: 1em;
+	/*width: 90%;
+	margin-left: 9%;*/
+}
+.as-sortable-item, .as-sortable-placeholder, .edit-unable{
+	/*transition: height 1s, background 1s;*/
+	margin-top: 0;
+	margin-bottom: 0;
+	border: 1px solid #333;
+	box-sizing: border-box;
+    background: -webkit-linear-gradient(rgba(226,226,226,0.7) 0%, rgba(219,219,219,0.7) 50%, rgba(209,209,209,0.7) 51%, rgba(254,254,254,0.7) 100%);
+    background: linear-gradient(rgba(226,226,226,0.7) 0%, rgba(219,219,219,0.7) 50%, rgba(209,209,209,0.7) 51%, rgba(254,254,254,0.7) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+.as-sortable-placeholder{
+	background: -webkit-linear-gradient(top, rgba(243,197,189,0.7) 0%,rgba(232,108,87,0.7) 50%,rgba(234,40,3,0.7) 51%,rgba(255,102,0,0.7) 75%,rgba(199,34,0,0.7) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(243,197,189,0.7) 0%,rgba(232,108,87,0.7) 50%,rgba(234,40,3,0.7) 51%,rgba(255,102,0,0.7) 75%,rgba(199,34,0,0.7) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+.as-sortable-item-handle{
+	height: 100%;
+}
+.as-sortable-drag {
+    height: inherit;
+}
+.broadcast-schedule-item{
+
+}
+.edit-unable{
+	background: #aaa;
+}
+.edit-unable:last-child{
+	background: -webkit-linear-gradient(top, rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.as-sortable-item.content-item{
+	border: none;
+	border-bottom: 1px solid #333;
+	border-radius: 0;
+	background: -webkit-linear-gradient(top, rgba(214,249,255,1) 0%,rgba(158,232,250,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(214,249,255,1) 0%,rgba(158,232,250,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+.as-sortable-item .as-sortable-item-handle{
+	padding: 0.5em;
+}
+.day-selector{
+	font-size: 20px;
+}
+.current-day{
+	text-align: center;
+	margin-bottom: 1em;
+}
+.move-month{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	background: #a8f;
+	vertical-align: middle;
+	border-radius: 3px;
+	cursor: pointer;
+	line-height: 15px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+.move-month:hover{
+	background: #caf;
+}
+.position-fixed{
+	position: fixed;
+}
+.w25p{
+	width: 25%;
+}
+.table-pointer>tbody>tr{
+	cursor: pointer;
+}
+/*.vertical-timeline{
+	position: relative;
+	height: 100%;
+	opacity: 0.7;
+}
+.vertical-timeline-item{
+	position: absolute;
+	display: block;
+	margin-top: -0.6em;
+	width: 100%;
+}
+.vertical-timeline-num{
+	vertical-align: middle;
+}
+.vertical-timeline-graduate{
+	display: inline-block;
+	width: 96%;
+	border-top: 1px solid #333;
+	margin-top: 0.75em;
+}
+.vertical-timeline-background{
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+}*/

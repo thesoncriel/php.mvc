@@ -1,0 +1,52 @@
+<div id="panel_wowContentList" ng-controller="PtvContentListController">
+	<form class="form-inline" name="form_ptvContentList" action="/exec/mng/wow.content.list.php" ng-asyncform param="param">
+		<h3>와우시네 - 컨텐츠 등록 현황 검색</h3>
+		<p class="text-primary">
+			※ 각 칸이 0이면 일반, 1이면 성인, 붉은 칸이면 등록되지 않음
+		</p>
+		<div class="form-group">
+			<label for="">검색 개수</label>
+			<select class="form-control" name="count" ng-model="param.count">
+				<option value="100">100</option>
+				<option value="200">200</option>
+				<option value="300">300</option>
+				<option value="400">400</option>
+				<option value="500">500</option>
+				<option value="1000">1000</option>
+			</select>
+		</div>
+		<button type="submit" class="btn btn-primary" ng-disabled="maxWork > 0">검색</button>
+		<div class="hidden">
+			<input type="text" name="ip" ng-model="param.ip">
+			<input type="text" name="page" ng-model="param.page">
+			<input type="text" name="count" ng-model="param.count">
+		</div>
+	</form>
+	<div class="progress" ng-show="maxWork > 0">
+	  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (((currIndex + 1) / maxWork) * 100) + '%'}">
+	    <span class="sr-only">{{ ((currIndex / maxWork) * 100) }}%</span>
+	  </div>
+	</div>
+	<table class="table">
+		<thead>
+			<th>영상제목</th>
+			<th ng-repeat="name in colHead track by $index">{{name}}</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list track by $index" ng-class="">
+				<td>{{item.title}}</td>
+				<td ng-repeat="col in item.contents track by $index" ng-class="{'danger': (!col)}">
+					<strong ng-class="{'text-muted': (col.logo_adult == 0), 'text-danger': (col.logo_adult != 0)}">{{col.logo_adult}}</strong>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot ng-if="list.length > 0">
+			<tr class="bg-info">
+				<td colspan="{{colHead.length + 1}}" class="text-right">::END::</td>
+			</tr>
+		</tfoot>
+	</table>
+	<!--<div class="text-center">
+        <ul uib-pagination ng-model="param.page" items-per-page="param.count" total-items="totalcount" max-size="5" previous-text="이전" next-text="다음" ng-change="onPageChange()"></ul>
+    </div>-->
+</div>

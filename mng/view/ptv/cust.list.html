@@ -1,0 +1,82 @@
+<div id="panel_ptvCustList" ng-controller="PtvCustListController">
+	<var ng-init="msgIdCustNeed='검색 시 가맹점ID는 필수 입니다.'"></var>
+	<form class="form-inline" name="form_ptvCustList" action="/exec/mng/ptv.cust.list.php" ng-asyncform param="param">
+		<div class="form-group">
+			<label for="">가맹점ID</label>
+			<input class="form-control" type="text" name="id_cust" ng-model="param.id_cust">
+		</div>
+		<button type="submit" class="btn btn-primary" ng-disabled="maxWork > 0">검색</button>
+		<div class="hidden">
+			<input type="text" name="ip" ng-model="param.ip">
+			<input type="text" name="page" ng-model="param.page">
+			<input type="text" name="count" ng-model="param.count">
+		</div>
+	</form>
+
+	<form class="hidden" name="form_dkClient" action="/exec/mng/dk.client.info.php" ng-asyncform param="param">
+		<div class="">
+			<input type="text" name="id_cust" ng-model="param.id_cust">
+		</div>
+	</form>
+
+	<div class="progress" ng-show="maxWork > 0">
+	  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (((currIndex + 1) / maxWork) * 100) + '%'}">
+	    <span class="sr-only">{{ ((currIndex / maxWork) * 100) }}%</span>
+	  </div>
+	</div>
+
+	<div ng-show="dkSearch">
+		<h4>DK 내용</h4>
+		<table class="table">
+			<thead>
+				<th>서비스 URL</th>
+				<th>입력일</th>
+				<th>변경일</th>
+				<th>CODE CUST</th>
+				<th>사용 포트</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in dkList">
+					<td>{{item.vods_url}}</td>
+					<td>{{item.dt_insert}}</td>
+					<td>{{item.dt_update}}</td>
+					<td>{{item.code_cust}}</td>
+					<td>{{item.vods_port}}</td>
+				</tr>
+				<tr ng-show="dkSearch && (dkList.length == 0)" class="bg-danger">
+					<td colspan="5">자료가 없습니다.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<h4>가맹점 등록 현황</h4>
+	<table class="table">
+		<thead>
+			<th>IP</th>
+			<th>가맹점ID</th>
+			<th>계약ID</th>
+			<th>가맹점명</th>
+			<th>상태</th>
+			<th>연동 가맹점 코드</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list" ng-class="{'danger': (item.resCode == 400) || (item.resCode == 500), 'warning': item.resCode == 408}">
+				<td>{{item.ip}}</td>
+				<td>{{item.id_cust}}</td>
+				<td>{{item.id_cust_svc}}</td>
+				<td>{{item.nm_site}}</td>
+				<td ng-class="{'text-danger': item.svc_status != 20}">{{item.svc_status}}</td>
+				<td>{{item.code_cust}}</td>
+			</tr>
+		</tbody>
+		<tfoot ng-if="list.length > 0">
+			<tr class="bg-info">
+				<td colspan="6" class="text-right">::END::</td>
+			</tr>
+		</tfoot>
+	</table>
+	<!--<div class="text-center">
+        <ul uib-pagination ng-model="param.page" items-per-page="param.count" total-items="totalcount" max-size="5" previous-text="이전" next-text="다음" ng-change="onPageChange()"></ul>
+    </div>-->
+</div>

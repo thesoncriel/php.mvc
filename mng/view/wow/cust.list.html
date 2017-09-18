@@ -1,0 +1,79 @@
+<div id="panel_wowCustList" ng-controller="PtvCustListController">
+	<var ng-init="msgIdCustNeed='검색 시 가맹점ID는 필수 입니다.'"></var>
+	<var ng-init="wow = true"></var>
+	<form class="form-inline" name="form_ptvCustList" action="/exec/mng/wow.cust.list.php" ng-asyncform param="param">
+		<div class="form-group">
+			<label for="">가맹점ID</label>
+			<input class="form-control" type="text" name="id_cust" ng-model="param.id_cust">
+		</div>
+		<button type="submit" class="btn btn-primary" ng-disabled="maxWork > 0">검색</button>
+		<div class="hidden">
+			<input type="text" name="ip" ng-model="param.ip">
+			<input type="text" name="page" ng-model="param.page">
+			<input type="text" name="count" ng-model="param.count">
+		</div>
+	</form>
+	<div class="progress" ng-show="maxWork > 0">
+	  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': ((currIndex / maxWork) * 100) + '%'}">
+	    <span class="sr-only">{{ ((currIndex / maxWork) * 100) }}%</span>
+	  </div>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>IP</th>
+				<th>가맹점ID</th>
+				<th>가맹점명</th>
+				<th>상태</th>
+				<th>HEAD IP</th>
+				<th>START</th>
+				<th>END</th>
+				<th>와우TV</th>
+				<th>유료영화</th>
+				<th>외부광고</th>
+				<th>내부광고</th>
+				<th>웹런처</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr  ng-repeat="item in list" ng-class="{'danger': (item.resCode == 400) || (item.resCode == 500), 'warning': item.resCode == 408}">
+				<td>{{item.ip}}</td>
+				<td>{{item.id_cust}}</td>
+				<td>{{item.nm_site}}</td>
+				<td ng-class="{'text-danger': item.svc_status != 20}">{{item.svc_status}}</td>
+				<td>{{item.head_ip}}</td>
+				<td>{{item.start_ip}}</td>
+				<td>{{item.end_ip}}</td>
+				
+				<td class="text-center">
+					<i class="text-success glyphicon glyphicon-ok" ng-if="item.id_prod == '010'"></i>
+					
+				</td>
+				<td class="text-center">
+					<i class="text-success glyphicon glyphicon-ok" ng-if="item.mode_ppv_movie_view == 1"></i>
+					<i class="text-danger glyphicon glyphicon-remove" ng-if="item.mode_ppv_movie_view == 0"></i>
+				</td>
+				<td class="text-center">
+					<i class="text-success glyphicon glyphicon-ok" ng-if="item.mode_mini_adv_view == 1"></i>
+					<i class="text-danger glyphicon glyphicon-remove" ng-if="item.mode_mini_adv_view == 0"></i>
+				</td>
+				<td class="text-center">
+					<i class="text-success glyphicon glyphicon-ok" ng-if="item.mode_mini_adv_view2 == 1"></i>
+					<i class="text-danger glyphicon glyphicon-remove" ng-if="item.mode_mini_adv_view2 == 0"></i>
+				</td>
+				<td class="text-center">
+					<i class="text-success glyphicon glyphicon-ok" ng-if="item.mode_start_app == 1"></i>
+					<i class="text-danger glyphicon glyphicon-remove" ng-if="item.mode_start_app == 0"></i>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot ng-if="list.length > 0">
+			<tr class="bg-info">
+				<td colspan="12" class="text-right">::END::</td>
+			</tr>
+		</tfoot>
+	</table>
+	<div class="text-center">
+        <ul uib-pagination ng-model="param.page" items-per-page="param.count" total-items="totalcount" max-size="5" previous-text="이전" next-text="다음" ng-change="onPageChange()"></ul>
+    </div>
+</div>

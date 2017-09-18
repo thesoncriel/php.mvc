@@ -1,0 +1,62 @@
+<div ng-controller="PtvBillLog">
+<h2>씨네호텔 <small>영화상영내역 조회</small></h2>
+<p class="text-info">
+	※ 사업자변경 되었다면 그와 관련된 가맹점도 함께 출력 됩니다.
+</p>
+<form class="form-inline" name="form_ptvBillLog" action="/exec/mng/ptv.client.bill.log.csv.php" method="post" ng-asyncform param="param">
+	<div class="form-group">
+		<label for="">가맹점ID</label>
+		<input class="form-control" type="text" name="id_cust" ng-model="param.id_cust">
+	</div>
+	<div class="form-group">
+		<label for="">날짜</label>
+		<input type="text" class="form-control date" name="dt_start" uib-datepicker-popup="yyyy-MM-dd" is-open="isOpened_dtStart" ng-model="dtStart"  ng-click="isOpened_dtStart = !isOpened_dtStart">
+	</div>
+	-
+	<div class="form-group">
+		<input type="text" class="form-control date" name="dt_end" uib-datepicker-popup="yyyy-MM-dd" is-open="isOpened_dtEnd" ng-model="dtEnd" ng-click="isOpened_dtEnd = !isOpened_dtEnd">
+	</div>
+	<button type="submit" class="btn btn-primary" ng-disabled="loading">수집</button>
+</form>
+
+<div class="progress" ng-show="maxWork > 0">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (((currIndex + 1) / maxWork) * 100) + '%'}">
+    <span class="sr-only">{{ ((currIndex / maxWork) * 100) }}%</span>
+  </div>
+</div>
+<div uib-alert class="alert-info upper-margin" ng-if="workResult.length > 0" close="onWorkResultClose()">
+	<h4>작업 결과</h4>
+	<p>
+		<span class="btn btn-success" ng-repeat="item in workResult" ng-class="{'btn-danger': item.code >= 400}">
+			<strong ng-if="item.code >= 400">{{item.ipNo}} - {{item.msg}}</strong>
+			<span ng-if="item.code < 400">{{item.ipNo}} - OK</span>
+		</span>
+	</p>
+</div>
+
+<form action="/exec/mng/ptv.client.bill.log.download.php" class="upper-margin">
+	<p class="text-info">
+		※ 자료 수집을 <strong>완료</strong> 하면 파일 다운로드가 가능하게 됩니다.
+	</p>
+	<button type="submit" class="btn btn-lg btn-success" ng-disabled="param.seq == 0 || loading"><i class="glyphicon glyphicon-save"></i> 자료 다운로드 <span class="badge">{{dataLength}}건</span></button>
+</form>
+
+<summary class="col-sm-4" ng-if="list.length > 0">
+	<h3>요약</h3>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>날짜</th>
+				<th>횟수</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list">
+				<td ng-bind="item.ins_date"></td>
+				<td ng-bind="item.count"></td>
+			</tr>
+		</tbody>
+	</table>
+</summary>
+
+</div><!-- $PtvBillLog -->

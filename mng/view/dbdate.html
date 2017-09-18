@@ -1,0 +1,36 @@
+<div id="panel_dbDateList" ng-controller="DBDateController">
+	<form class="form-inline" name="form_dbDateList" action="/exec/mng/db.date.php" ng-asyncform param="param">
+		<button type="submit" class="btn btn-primary" ng-disabled="maxWork > 0">검색</button>
+		<div class="hidden">
+			<input type="text" name="ip" ng-model="param.ip">
+		</div>
+	</form>
+
+	<div class="progress" ng-show="maxWork > 0">
+	  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (((currIndex + 1) / maxWork) * 100) + '%'}">
+	    <span class="sr-only">{{ ((currIndex / maxWork) * 100) }}%</span>
+	  </div>
+	</div>
+
+	<div>
+		<h4>각 서버별 DB 날짜 확인</h4>
+		<table class="table">
+			<thead>
+				<th>IP</th>
+				<th>DB날짜</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in list">
+					<td>{{item.ip}}</td>
+					<td>{{item.date}}</td>
+				</tr>
+				<tr ng-show="search && (list.length == 0)" class="bg-danger">
+					<td colspan="2">자료가 없습니다.</td>
+				</tr>
+				<tr ng-show="!search && (list.length == 0)">
+					<td colspan="2">검색 해 주세요</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>    

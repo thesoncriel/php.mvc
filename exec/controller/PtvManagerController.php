@@ -2,7 +2,7 @@
 include_once $_SERVER["DOCUMENT_ROOT"] . "/__mvc.php";
 
 class PtvManagerController extends BaseController{
-	private $secureCd = "669911";
+	private $secureCd = "";
 
 	public function __construct(){
 		parent::__construct();

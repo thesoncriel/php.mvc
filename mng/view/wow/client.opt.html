@@ -1,0 +1,145 @@
+<div ng-controller="PtvClientOpt">
+<var ng-init="wow = true"></var>
+<form class="form-inline" name="form_ptvClientOptInfo" action="/exec/mng/wow.client.opt.info.php" ng-asyncform param="param">
+	<div class="form-group">
+		<label for="">가맹점ID</label>
+		<input class="form-control" type="text" name="id_cust" ng-model="param.id_cust">
+	</div>
+	<button type="submit" class="btn btn-primary" ng-disabled="loading">검색</button>
+</form>
+<div class="alert alert-success">
+	 ※ 검색 내용은 11번 DB 서버 내용을 기준으로 가져 옵니다.
+</div>
+<div class="progress" ng-show="maxWork > 0">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (((currIndex + 1) / maxWork) * 100) + '%'}">
+    <span class="sr-only">{{ ((currIndex / maxWork) * 100) }}%</span>
+  </div>
+</div>
+<div uib-alert class="alert-info" ng-if="workResult.length > 0" close="onWorkResultClose()">
+	<h4>작업 결과</h4>
+	<p>
+		<span class="btn btn-success" ng-repeat="item in workResult" ng-class="{'btn-danger': item.code >= 400}">
+			<strong ng-if="item.code >= 400">{{item.ipNo}} - {{item.msg}}</strong>
+			<span ng-if="item.code < 400">{{item.ipNo}} - OK</span>
+		</span>
+	</p>
+</div>
+<div class="" ng-controller="PtvCache">
+	<var ng-init="useIP = CACHE_IP"></var>
+	<div uib-alert class="alert-info" ng-if="workResult.length > 0" close="onWorkResultClose()">
+		<h4>캐시삭제 결과</h4>
+		<p>
+			<span class="btn btn-primary" ng-repeat="item in workResult" ng-class="{'btn-danger': item.code >= 400}">
+				<strong ng-if="item.code >= 400">{{item.ipNo}} - {{item.msg}}</strong>
+				<span ng-if="item.code < 400">{{item.ipNo}} - OK</span>
+			</span>
+		</p>
+	</div>
+	<form class="form-inline hidden" name="form_cacheDeleteCustInfo" action="/exec/mng/cache.delete.custinfo.php" method="post" ng-asyncform param="param">
+		<div class="form-group">
+			<label for="">가맹점ID</label>
+			<input class="form-control" type="text" name="id_cust" ng-model="param.id_cust">
+		</div>
+		<button type="submit" class="btn btn-warning" ng-disabled="loading">삭제</button>
+	</form>
+</div><!-- controller=PtvCache -->
+<div class="row">
+<div class="col-md-6">
+<div id="panel_ptvClientOpt" class="panel panel-info">
+	<div class="panel-heading">
+		일반 옵션
+	</div>
+	<div class="panel-body">
+		<form name="form_ptvClientOpt" action="/exec/mng/wow.client.opt.update.php" method="post" class="form-horizontal" ng-asyncform param="param">
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">유료영화 제공</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_ppv_movie_view" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_ppv_movie_view" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">외부광고 출력</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_mini_adv_view" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_mini_adv_view" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">내부광고 출력</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_mini_adv_view2" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_mini_adv_view2" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">웹런처 출력</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_start_app" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_start_app" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-block btn-success"><i class="glyphicon glyphicon-ok"></i> <b>적용</b></button>
+			</div>
+		</form>
+	</div><!-- .panel-body -->
+</div><!-- #panel_ptvClientOpt -->
+</div><!-- .col-md-6 -->
+<div class="col-md-6">
+	<div id="panel_ptvClientProd" class="panel panel-danger">
+		<div class="panel-heading">
+			상품 옵션 (PROD)
+		</div>
+		<div class="panel-body">
+			<form name="form_ptvClientProd" action="/exec/mng/wow.client.prod.update.php" method="post" class="form-horizontal" ng-asyncform param="param">
+				<div class="form-group">
+					<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">영화 제공</label>
+					<div class="col-xs-7 col-sm-9 col-md-8">
+						<div class="btn-group">
+						<label for="" class="btn btn-select" ng-model="param.prod_100" uib-btn-radio="9">미등록</label>
+						<label for="" class="btn btn-select" ng-model="param.prod_100" uib-btn-radio="0">해제</label>
+						<label for="" class="btn btn-select" ng-model="param.prod_100" uib-btn-radio="1">사용</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">TV 제공</label>
+					<div class="col-xs-7 col-sm-9 col-md-8">
+						<div class="btn-group">
+						<label for="" class="btn btn-select" ng-model="param.prod_010" uib-btn-radio="9">미등록</label>
+						<label for="" class="btn btn-select" ng-model="param.prod_010" uib-btn-radio="0">해제</label>
+						<label for="" class="btn btn-select" ng-model="param.prod_010" uib-btn-radio="1">사용</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">만화 제공</label>
+					<div class="col-xs-7 col-sm-9 col-md-8">
+						<div class="btn-group">
+						<label for="" class="btn btn-select" ng-model="param.prod_001" uib-btn-radio="9">미등록</label>
+						<label for="" class="btn btn-select" ng-model="param.prod_001" uib-btn-radio="0">해제</label>
+						<label for="" class="btn btn-select" ng-model="param.prod_001" uib-btn-radio="1">사용</label>
+						</div>
+					</div>
+				</div>
+				<div class="text-center">
+					<button type="submit" class="btn btn-block btn-success"><i class="glyphicon glyphicon-ok"></i> <b>적용</b></button>
+				</div>
+			</form>
+			<p class="text-primary">
+				※ 하나라도 <strong>미등록</strong>으로 설정하면 모든 옵션이 <strong>미등록</strong>으로 설정 됩니다.
+			</p>
+		</div>
+	</div>
+</div>
+</div><!-- .row -->
+</div><!-- $PtvClientOpt -->

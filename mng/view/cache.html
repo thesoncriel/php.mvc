@@ -1,0 +1,48 @@
+<div class="" ng-controller="PtvCache">
+	<!-- <var ng-init="useIP = ['211.43.189.155', '211.43.189.155', '211.43.189.155']"></var> -->
+	<var ng-init="useIP = CACHE_IP"></var>
+	<div class="progress" ng-show="maxWork > 0">
+	  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (((currIndex + 1) / maxWork) * 100) + '%'}">
+	    <span class="sr-only">{{ ((currIndex / maxWork) * 100) }}%</span>
+	  </div>
+	</div>
+	<div uib-alert class="alert-info" ng-if="workResult.length > 0" close="onWorkResultClose()">
+		<h4>작업 결과</h4>
+		<p>
+			<span class="btn btn-success" ng-repeat="item in workResult" ng-class="{'btn-danger': item.code >= 400}">
+				<strong ng-if="item.code >= 400">{{item.ipNo}} - {{item.msg}}</strong>
+				<span ng-if="item.code < 400">{{item.ipNo}} - OK</span>
+			</span>
+		</p>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form class="form-inline" name="form_cacheDeleteCustInfo" action="/exec/mng/cache.delete.custinfo.php" method="post" ng-asyncform param="param">
+				<h3>가맹점 캐시 삭제</h3>
+				<p class="text-muted">
+					ONS에서 가맹점 정보를 변경하였고, 가맹점에 그 내용을 즉시 반영할 필요가 있을 때 사용 하십시오.
+				</p>
+				<div class="form-group">
+					<label for="">가맹점ID</label>
+					<input class="form-control" type="text" name="id_cust" ng-model="param.id_cust">
+				</div>
+				<button type="submit" class="btn btn-warning" ng-disabled="loading">삭제</button>
+			</form>
+		</div>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form class="form-inline" name="form_cacheDeleteAll" action="/exec/mng/cache.delete.all.php" method="post" ng-asyncform param="param">
+				<h3>모든 캐시 삭제</h3>
+				<p class="text-danger">
+					※ APC 캐시 내 가맹점 정보 뿐만 아니라 영화, 만화 및 목록 캐시 모두 삭제 됩니다.
+				</p>
+				<p class="text-danger">
+					※ 캐시 삭제 시 사용자 이용 시간에 따라서 DB 서버 이용량이 순간적으로 폭증할 수 있습니다.
+				</p>
+				<button type="submit" class="btn btn-danger" ng-disabled="loading">삭제</button>
+			</form>
+		</div>
+	</div>
+</div>

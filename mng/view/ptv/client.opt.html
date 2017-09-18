@@ -1,0 +1,220 @@
+<div ng-controller="PtvClientOpt">
+<form class="form-inline" name="form_ptvClientOptInfo" action="/exec/mng/ptv.client.opt.info.php" ng-asyncform param="param">
+	<div class="form-group">
+		<label for="">가맹점ID</label>
+		<input class="form-control" type="text" name="id_cust" ng-model="param.id_cust">
+	</div>
+	<button type="submit" class="btn btn-primary" ng-disabled="loading">검색</button>
+</form>
+<div class="alert alert-success">
+	 ※ 검색 내용은 49번 DB 서버 내용을 기준으로 가져 옵니다.
+</div>
+<div class="progress" ng-show="maxWork > 0">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (((currIndex + 1) / maxWork) * 100) + '%'}">
+    <span class="sr-only">{{ ((currIndex / maxWork) * 100) }}%</span>
+  </div>
+</div>
+<div uib-alert class="alert-info" ng-if="workResult.length > 0" close="onWorkResultClose()">
+	<h4>작업 결과</h4>
+	<p>
+		<span class="btn btn-success" ng-repeat="item in workResult" ng-class="{'btn-danger': item.code >= 400}">
+			<strong ng-if="item.code >= 400">{{item.ipNo}} - {{item.msg}}</strong>
+			<span ng-if="item.code < 400">{{item.ipNo}} - OK</span>
+		</span>
+	</p>
+</div>
+<div class="" ng-controller="PtvCache">
+	<var ng-init="useIP = CACHE_IP"></var>
+	<div uib-alert class="alert-info" ng-if="workResult.length > 0" close="onWorkResultClose()">
+		<h4>캐시삭제 결과</h4>
+		<p>
+			<span class="btn btn-primary" ng-repeat="item in workResult" ng-class="{'btn-danger': item.code >= 400}">
+				<strong ng-if="item.code >= 400">{{item.ipNo}} - {{item.msg}}</strong>
+				<span ng-if="item.code < 400">{{item.ipNo}} - OK</span>
+			</span>
+		</p>
+	</div>
+	<form class="form-inline hidden" name="form_cacheDeleteCustInfo" action="/exec/mng/cache.delete.custinfo.php" method="post" ng-asyncform param="param">
+		<div class="form-group">
+			<label for="">가맹점ID</label>
+			<input class="form-control" type="text" name="id_cust" ng-model="param.id_cust">
+		</div>
+		<button type="submit" class="btn btn-warning" ng-disabled="loading">삭제</button>
+	</form>
+</div><!-- controller=PtvCache -->
+<div class="row">
+<div class="col-md-6">
+<div id="panel_ptvClientOpt" class="panel panel-info">
+	<div class="panel-heading">
+		일반 옵션
+	</div>
+	<div class="panel-body">
+		<form name="form_ptvClientOpt" action="/exec/mng/ptv.client.opt.update.php" method="post" class="form-horizontal" ng-asyncform param="param">
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">화면 모드</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_screen" uib-btn-radio="0">창모드</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_screen" uib-btn-radio="1">전체화면</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">플레이 방식</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_play_movie" uib-btn-radio="0">스트리밍</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_play_movie" uib-btn-radio="1">공유[samba]</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">음성멘트 출력</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_sound_intro" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_sound_intro" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">성인 인증</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_adult" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_adult" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">성인영화 제공</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_adult_movie_view" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_adult_movie_view" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">유료영화 제공</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_ppv_movie_view" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_ppv_movie_view" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">성인용품 버튼</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_adt_mall_view" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_adt_mall_view" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">그린라이트 적용</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_adt_green_view" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_adt_green_view" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">ANYTOON 적용</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_anytoon" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_anytoon" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-block btn-success"><i class="glyphicon glyphicon-ok"></i> <b>적용</b></button>
+			</div>
+		</form>
+	</div><!-- .panel-body -->
+</div><!-- #panel_ptvClientOpt -->
+</div><!-- .col-md-6 -->
+
+<div class="col-md-6">
+<div id="panel_ptvClientAdvOpt" class="panel panel-info">
+	<div class="panel-heading">
+		광고 옵션
+	</div>
+	<div class="panel-body">
+		<form name="form_ptvClientOptAdv" action="/exec/mng/ptv.client.opt.adv.update.php" method="post" class="form-horizontal" ng-asyncform param="param">
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">시작광고 출력</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_start_adv_view" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_start_adv_view" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">시작광고 주소</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<a ng-href="{{param.start_adv_url}}" target="_blank">{{param.start_adv_url}}</a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">OSD광고 성인</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_osd_adt_view" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_osd_adt_view" uib-btn-radio="1">사용</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">OSD광고 일반</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_osd_nor_view" uib-btn-radio="0">해제</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_osd_nor_view" uib-btn-radio="1">일반</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_osd_nor_view" uib-btn-radio="2">성인</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">OSD광고 투명도</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<select class="form-control" name="mode_osd_opacity" 
+					ng-model="param.mode_osd_opacity" convert-to-number>
+						<option ng-repeat="opt in OSDOpacityList" ng-value="opt">{{opt}}</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">프리롤광고 출력</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<div class="btn-group">
+					<label for="" class="btn btn-select" ng-model="param.mode_preroll_view" uib-btn-radio="0">해제(0)</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_preroll_view" uib-btn-radio="1">동영상광고(1)</label>
+					<label for="" class="btn btn-select" ng-model="param.mode_preroll_view" uib-btn-radio="2">웹광고(2)</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-xs-5 col-sm-3 col-md-4 control-label">프리롤광고 주소</label>
+				<div class="col-xs-7 col-sm-9 col-md-8">
+					<input class="form-control" type="text" name="preroll_url" ng-model="param.preroll_url">
+				</div>
+			</div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-block btn-success"><i class="glyphicon glyphicon-ok"></i> <b>적용</b></button>
+			</div>
+			<p class="text-danger">
+				※ 프리롤광고 출력이 <strong class="text-primary">해제</strong>로 되어 있지 않다면 (B)형 런처에서 플레이어가 수행되지 않을 수 있습니다.
+			</p>
+		</form>
+	</div><!-- .panel-body -->
+</div><!-- #panel_ptvClientAdvOpt -->
+</div><!-- .col-md-6 -->
+</div><!-- .row -->
+</div><!-- $PtvClientOpt -->

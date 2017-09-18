@@ -1,0 +1,37 @@
+body{
+  font-family: "나눔 고딕", "나눔고딕", "맑은 고딕", "맑은고딕", "돋움", "arial-black", sans-serif;
+}
+.loading-circle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: loading-spin 1s ease-in-out infinite;
+  -webkit-animation: loading-spin 1s ease-in-out infinite;
+}
+
+@keyframes loading-spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes loading-spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+
+.btn-select{
+  border: 1px solid #888;
+}
+.btn-select.active{
+  background: #286090;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.form-group .date{
+  width: 120px;
+}
+
+.upper-margin{
+  margin-top: 1em;
+}

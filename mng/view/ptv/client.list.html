@@ -1,0 +1,42 @@
+<div id="panel_ptvClientList" ng-controller="PtvClientListController">
+	<var ng-init="msgIdCustNeed='검색 시 가맹점ID는 필수 입니다.'"></var>
+	<form class="form-inline" name="form_ptvClientList" action="/exec/mng/ptv.client.list.php" ng-asyncform param="param">
+		<div class="form-group">
+			<label for="">가맹점ID</label>
+			<input class="form-control" type="text" name="id_cust" ng-model="param.id_cust">
+		</div>
+		<button type="submit" class="btn btn-primary" ng-disabled="maxWork > 0">검색</button>
+		<div class="hidden">
+			<input type="text" name="ip" ng-model="param.ip">
+			<input type="text" name="page" ng-model="param.page">
+			<input type="text" name="count" ng-model="param.count">
+		</div>
+	</form>
+	<div class="progress" ng-show="maxWork > 0">
+	  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (((currIndex + 1) / maxWork) * 100) + '%'}">
+	    <span class="sr-only">{{ ((currIndex / maxWork) * 100) }}%</span>
+	  </div>
+	</div>
+	<table class="table">
+		<thead>
+			<th>MAC / 가맹점ID</th>
+			<th ng-repeat="name in colHead track by $index">{{name}}</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list track by $index" ng-class="">
+				<td>{{item.mac}}</td>
+				<td ng-repeat="col in item.clients track by $index" ng-class="{'danger': (!col)}">
+					<strong ng-class="{'text-muted': (col.yn_use == 'Y'), 'text-danger': (col.yn_use != 'Y')}">{{col.yn_use}}</strong>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot ng-if="list.length > 0">
+			<tr class="bg-info">
+				<td colspan="{{colHead.length + 1}}" class="text-right">::END::</td>
+			</tr>
+		</tfoot>
+	</table>
+	<!--<div class="text-center">
+        <ul uib-pagination ng-model="param.page" items-per-page="param.count" total-items="totalcount" max-size="5" previous-text="이전" next-text="다음" ng-change="onPageChange()"></ul>
+    </div>-->
+</div>

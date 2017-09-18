@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<strong class="navbar-brand">Jway</strong>
+			</div>
+		</div>	
+	</nav>
+	<section class="container" ng-controller="PtvLoginController">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<i class="glyphicon glyphicon-log-in"></i> Sign In
+					</div>
+					<div class="panel-body">
+						<form name="form_login" action="/exec/mng/login.php" method="post" ng-asyncform="" params="param">
+							<var ng-init="msgInvalidId='아이디를 입력하세요.'"></var>
+							<var ng-init="msgInvalidPw='비밀번호를 입력하세요.'"></var>
+							<div class="form-group">
+								<label for="">ID</label>
+								<input type="text" class="form-control" name="id" placeholder="아이디" required="" ng-model="param.id">
+							</div>
+							<div class="form-group">
+								<label for="">Password</label>
+								<input type="password" class="form-control" name="pw" placeholder="비밀번호" required="" ng-model="param.pw">
+							</div>
+							<div class="text-center">
+								<label><input type="checkbox" name="remember" ng-model="param.remember"> <i class="glyphicon" ng-class=""></i>Remember me</label>
+							</div>
+							<button class="btn btn-primary btn-lg btn-block" type="submit" ng-disabled="nowloading"><span ng-show="!nowloading">Log In</span><span class="loading-circle" ng-show="nowloading"></span></button>
+						</form>
+					</div>
+				</div>
+				<p class="text-primary">
+					※ 간혹 모바일에서 접속이 안되거나 로그인 버튼을 눌러도 반응이 없다면 자동 비밀번호 기능을 해제하고 저장된 비밀번호 내용을 삭제한 후 다시 시도 해 주십시오.
+				</p>
+			</div>
+		</div>
+	</section>
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container text-center">
+			<small>&copy;2016 Jway</small>
+		</div>	
+	</nav>
