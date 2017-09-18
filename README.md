@@ -55,6 +55,7 @@ CSS는 SASS를 활용하였으며 컴파일러로 koala를 함께 이용 하였�
 	- AngularJS & UI-Router
 	- jQuery
 	- Bootstrap
+	- LoDash (상영내역조회 에서 자료 요약 시 쓰임)
 	
 ### 코믹 뷰어
 원래 이 서비스는 ActiveX 전용이었다.  
