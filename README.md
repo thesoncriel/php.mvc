@@ -56,9 +56,13 @@ CSS는 SASS를 활용하였으며 컴파일러로 koala를 함께 이용 하였�
 	- jQuery
 	- Bootstrap
 	
-### 기타 특징
-코믹 뷰어는 DRM 적용된 이미지를 바이너리로 처리하여 해독한 뒤 출력해야 하는데, html5는 Blob 및 FileAPI로 가능하지만 이를 지원 못하는 IE9 이하 웹브라우저를 위해 FLEX를 일부 사용 하였다.  
-(FLEX는 Flash Develop 를 이용함)
+### 코믹 뷰어
+원래 이 서비스는 ActiveX 전용이었다.  
+그러나 윈10이 출시되고 가맹점에 널리 퍼지면서 이게 문제가 되었다.  
+그래서 웹표준 방법을 적용하기 위해 새로 만든 것이 바로 이 것.  
+원래 코믹 뷰어는 DRM 적용된 이미지를 바이너리로 처리하여 해독한 뒤 출력해야 하는데, 기존에 ActiveX로 C++ 에서 처리하던 것을 html5로 바꾸고 Blob 및 FileAPI로 처리할 수 있도록 하였다.  
+그러나 이를 지원 못하는 IE9 이하 웹브라우저를 위해 FLEX를 일부 사용 하였다. (FLEX는 Flash Develop 를 이용함)  
+이 내용들은 브라우저 환경에 따라 Image Component Factory 측에서 알맞은 컴포넌트를 제공하도록 만들었다.
 
 ## 비고
 사정상 보안에 민감한 내용과 하부 컨텐츠 및 SQL문, 백엔드 모듈 등은 제거 함.
@@ -76,7 +80,6 @@ CSS는 SASS를 활용하였으며 컴파일러로 koala를 함께 이용 하였�
 ![](https://github.com/thesoncriel/php.mvc/blob/master/screenshots/006.png)
 ![](https://github.com/thesoncriel/php.mvc/blob/master/screenshots/007.png)
 ![](https://github.com/thesoncriel/php.mvc/blob/master/screenshots/008.png)
-![](https://github.com/thesoncriel/php.mvc/blob/master/screenshots/009.png)
 
 ### VODS - Comic Viewer
 ![](https://github.com/thesoncriel/php.mvc/blob/master/screenshots/comicviewer.png)
