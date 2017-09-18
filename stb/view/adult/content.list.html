@@ -1,0 +1,12 @@
+<div id="panel_adultContentList" class="content-list">
+	<div as-sortable="contentCloneOption" ng-model="contentList">
+		<div class="content-item" ng-repeat="item in contentList" as-sortable-item>
+			<div as-sortable-item-handle="">
+				[{{hmsFormat(item.running_time)}}] - {{item.title}}
+			</div>
+	    </div>
+	</div>
+	<div class="text-center">
+        <ul uib-pagination ng-model="param_cont.page" items-per-page="param_cont.count" total-items="contentCount" max-size="5" previous-text="이전" next-text="다음" ng-change="onPageChange()"></ul>
+    </div>
+</div>

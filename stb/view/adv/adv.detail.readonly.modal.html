@@ -1,0 +1,39 @@
+<div class="modal-header">
+	<h3 class="modal-title">[{{hmFormat(schedule.dt_bc_start)}}] {{schedule.title}}</h3>
+</div>
+<div class="modal-body">
+	<div class="panel panel-info">
+		<div class="panel-heading"><strong>적용된 광고 정보</strong></div>
+		<div class="panel-body">
+			<form class="hidden" name="form_advForModal" action="/exec/stb/adv.detail.php" method="get" ng-asyncform="auto" param="param_adv">
+				<input type="text" name="adv_id">
+			</form>
+			<var ng-init="typeCase={'0': '없음', '1': 'HTML', '2': 'VOD'}"></var>
+			<div class="row">
+				<div class="col-sm-2">제목</div>
+				<div class="col-sm-10">{{adv.adv_title}}</div>
+				<div class="col-sm-2">형태</div>
+				<div class="col-sm-10">{{typeCase[adv.adv_type]}}</div>
+				<div class="col-sm-2">사용여부</div>
+				<div class="col-sm-10">
+					<span ng-if="adv.adv_use == 'Y'">예</span>
+					<span ng-if="adv.adv_use != 'Y'">아니오</span>
+				</div>
+				<div class="col-sm-2">길이</div>
+				<div class="col-sm-10">{{adv.duration}}초 ({{hmsFormat(adv.duration)}})</div>
+				<div class="col-sm-2">URL</div>
+				<div class="col-sm-10">
+					<a ng-href="{{adv.url}}" target="_blank">{{adv.url}}</a>
+				</div>
+				<div class="col-sm-2">상세</div>
+				<div class="col-sm-10">{{adv.adv_desc}}</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- (.form-group>label[for='input_advModify$'].col-sm-2.control-label+.col-sm-10>input#input_advModify$.form-control)*8 -->
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" type="button" ng-click="cancel()">확인</button>
+</div>

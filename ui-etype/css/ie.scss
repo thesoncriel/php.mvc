@@ -1,0 +1,463 @@
+@charset "utf-8";
+
+@import "_var";
+@import "_icon-var";
+// 구버전 IE를 위한 전용 CSS 모음
+// ※ Web Launcher 에서는 IE 5.0, 5.5 혹은 6.0 을 쓴다 (...)
+
+
+.header>*,
+.logo-main,
+.logo-playtv,
+.menu-item{
+	display: block;
+	float: left;
+}
+
+.detail-inner,
+.detail-figure{
+	padding: 0;
+}
+// .detail-figure{
+// 	box-sizing: border-box;
+// 	overflow: hidden;
+// 	border: 1px solid #333333;
+// 	position: relative;
+// }
+// .pos-rb{
+// 	float: right;
+// 	display: inline;
+// }
+
+
+
+.container,
+.header,
+.detail-figure,
+.list-item{
+	overflow: hidden;
+}
+.container{
+	position: static;
+}
+.detail{
+	height: $contentH - 3px;
+}
+.detail-comic{
+	height: $contentH - $subHeaderH;
+	.scrollable .viewport{
+		height: $contentH - $subHeaderH - 18px;
+	}
+}
+.detail-figure{
+	height: $detailPosterH;
+}
+.synopsis{
+	display: inline;
+}
+
+#movie_list,
+#comic_list{
+	.overview{
+		padding-bottom: 3px;
+	}
+}
+
+.list-item{
+	width: $listItemPosterW + $icon55size + 6px;
+	height: $listItemPosterH + 6px;
+}
+
+.icon-menu,
+.icon-63-troffy,
+.icon-55-troffy,
+.icon-63-play,
+.icon-55-play{
+	display: block;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+@each $keyword in 3d, adult, best, comics, korean, foregin, premium, tv{
+	.icon-#{$keyword} {
+		@extend .icon-menu; 
+	}
+}
+
+
+.icon-close{
+	display: block;
+}
+
+input[type=submit],
+input[type=reset],
+input[type=button],
+button
+{
+       filter:chroma(color=#000000);
+}
+
+
+#movie_list {
+	height: $contentH + 3px;
+}
+#comic_list {
+	height: $contentH - $subHeaderH + 3px;
+}
+
+// 만화 각권별 버튼 레이아웃 어긋남 조정
+.detail-desc{
+	.each-books{
+		padding-left: 9px;
+		//width: 230px;
+		margin-right: 20px;
+	}
+}
+
+// 가운데 정렬이 안되므로 absolute로 중앙 정렬 함.
+.ad-bottom{
+	width: 100%;
+	position: relative;
+
+	iframe{
+		position: absolute;
+		left: 50%;
+		margin-left: -(970px / 2);
+	}
+}
+// Absolute Positioning in a Relative Container
+// 모달 내 로딩 overlay가 모달 화면 전체를 감싸지 못하는 버그 수정
+.modal{
+	zoom: 1;
+	height: 1%; // 이게 진국
+}
+.modal-overlay{
+	position: absolute;
+}
+.adult-verify{
+	.modal-body{
+		text-align: center;
+		&>*{
+			//text-align: left;
+		}
+
+		.form-horizontal,
+		.caution,
+		.advice{
+			text-align: left;
+		}
+	}
+
+	.form-horizontal{
+		width: 270px;
+		display: inline;
+		margin: 0;
+		padding-bottom: 0;
+		margin-bottom: -0.5em;
+	}
+
+	.advice{
+		text-align: left;
+	}
+}
+
+.form-group-row{
+	display: block;
+	position: relative;
+	clear: both;
+	margin-bottom: 1.5em;
+
+	label{
+		width: 50%;
+		display: block;
+		float: left;
+		margin: 0;
+		padding-top: 5px;
+	}
+
+	.input-col{
+		width: 50%;
+		//zoom: 1;
+		display: block;
+		//float: left;
+		position: absolute;
+		margin: 0;
+	}
+
+	input{
+		padding: 0;
+	}
+}
+.adult-verify{
+	span.btn{
+		border: 1px solid #ccc;
+		cursor: pointer;
+	}
+}
+
+
+.btn-verify-apply,
+.btn-verify-cancel{
+	border: 0;
+	line-height: 10px;
+}
+// IE6 이하 에서 filter로 그라디언트를 만들면 근처의 요소가 렌더링 시 깨지는 현상이 발생된다.
+// 이 때 그 깨지는 쪽도 같이 filter 먹이면 되더라(...)
+.btn-verify-apply{
+	background: $bgVerifyApplyS;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$bgVerifyApplyS}', endColorstr='#{$bgVerifyApplyE}');
+
+	&-hover{
+		background: red;
+		filter: none;
+	}
+}
+.btn-verify-cancel{
+	background: #fff;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd');
+
+	&-hover{
+		background: #ddd;
+		filter: none;
+	}
+}
+
+.icon-33-search,
+.btn-book-prev,
+.btn-book-next,
+.btn-book-prev:hover,
+.btn-book-next:hover,
+.btn-book-prev-active,
+.btn-book-next-active{
+	display: block;
+}
+.page-ctrl .btn-group{
+	margin-left: 6px;
+	.btn-book{
+		&-prev,
+		&-next{
+			float: left;
+		}
+	}
+}
+
+.page-cover-left{
+	position: absolute;
+	display: block;
+	right: 50%;
+	//_cursor: url(css/img/arrow_left.cur), default;
+	//cursor: url(css/img/arrow_left.cur), default;
+}
+.page-cover-right{
+	position: absolute;
+	display: block;
+	left: 50%;
+	//_cursor: url(css/img/arrow_right.cur), default;
+	//cursor: url(css/img/arrow_right.cur), default;
+}
+
+// IE8
+.comicviewer {
+	.page-header,
+	.page-ctrl,
+	.aside-bottom{
+		position: fixed;
+		z-index: 1;
+
+		iframe{
+	    	
+	    }
+	}
+	.viewport>*{
+		vertical-align: top;
+	}
+	.page-header{
+		z-index: 2;
+	}
+	#panel_err{
+		line-height: 2em;
+	}
+}
+// IE6 이하
+.viewport-page-cover{_display: none;}
+.comicviewer {
+	.page-header,
+	.page-ctrl,
+	.aside-bottom{
+		_position: absolute;
+		_z-index: 0;
+
+		iframe{
+			_position: absolute;
+	    	_left: 50%;
+	    	_bottom: 5px;
+	    	_margin: 0 0 0 (-1px * (970 / 2));
+		}
+
+	}
+	.w728 iframe{
+		_margin: 0 0 0 (-1px * (728 / 2));
+	}
+	.btn-page-goto{
+		_position: absolute;
+		_right: 15px;
+	}
+}
+.btn{
+	&-coupon-back,
+	&-coupon-use,
+	&-purchase-cancel,
+	&-purchase-progress{
+		_color: transparent;
+		_text-indent: 0;
+	}
+}
+.modal-purchase{
+	.modal-header{
+		_padding-bottom: 4px;
+		*padding-bottom: 4px;
+	}
+}
+.modal-coupon{
+	.dash{
+		_margin-top: 11px;
+	}
+}
+
+// IE7
+.btn{
+	&-coupon-back,
+	&-coupon-use,
+	&-purchase-cancel,
+	&-purchase-progress{
+		*color: transparent;
+		*text-indent: 0;
+	}
+}
+.modal-purchase,
+.modal-coupon{
+	//*height: auto; // IE7
+}
+
+
+// IE7~8
+*+html body {
+	.viewport-page-cover{left: 0px; white-space: nowrap;}
+	//.viewport-page-cover{display: none;}
+	.page-cover-left,
+	.page-cover-right{
+		position: static;
+		display: inline-block;
+	}
+	.comicviewer{
+		.viewport>*{
+			vertical-align: top;
+		}
+		.aside-bottom{
+			text-align: center;
+			frame{
+				//display: inline-block;
+			}
+		}
+	}
+	.btn-page-goto{
+		position: absolute;
+		right: 10px;
+	}
+	// .comicviewer {
+	// 	.page-header,
+	// 	.page-ctrl,
+	// 	.aside-bottom{
+	// 		position: fixed;
+	// 		z-index: 1;
+	// 	}
+	// }
+}
+// IE6 이하
+
+
+.icon-caret,
+.icon-caret-lg,
+.icon-caret-gray{
+	margin-bottom: 3px;
+	margin-right: 5px;
+	text-indent: 0;
+	_margin-right: 0px;
+}
+
+
+.btn-sm{
+	&-book,
+	&-finish{
+		position: relative;
+		display: inline;
+		//behavior: url(css/PIE.htc);
+		//border-radius: 3px;
+	}
+	&-finish{
+		line-height: 11px;
+		top: 1px;
+	}
+}
+
+.sub-header{
+	&-inner{
+		padding-top: 0;
+	}
+}
+.sub-category-first{
+	background: $bgSubHeaderCategory1st;
+	padding-bottom: $subHeaderPadding;
+
+	.sub-item a{
+		line-height: 20px;
+	}
+}
+.sub-item,
+.sub-item-first{
+	height: 100%;
+	border-right: none;
+	padding-top: $subHeaderPadding;
+	a{
+		display: block;
+		height: $subCategoryH;
+		border-right: 1px solid #fff;
+		margin-top: 0;
+		line-height: $subCategoryH;
+	}
+}
+.sub-item-first{
+	border-left: none;
+	line-height: 20px;
+	a{
+		border-left: 1px solid #fff;
+	}
+}
+
+
+
+// 와우시네
+// D-Type
+@import "_var-dtype-wow";
+
+.dtypewow{
+	.detail{
+		height: $contentH - 3px;
+	}
+	.detail-comic{
+		height: $contentH - $subHeaderH;
+		.scrollable .viewport{
+			height: $contentH - $subHeaderH - 18px;
+		}
+	}
+	.detail-figure{
+		height: $detailPosterH;
+	}
+
+	#movie_list {
+		height: $contentH + 3px;
+	}
+	#comic_list {
+		height: $contentH - $subHeaderH + 3px;
+	}
+}

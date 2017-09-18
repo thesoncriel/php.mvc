@@ -1,0 +1,198 @@
+@charset "utf-8";
+
+// modal 부분
+
+
+.modal-overlay{
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	left: 0;
+	top: 0;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	z-index: 10;
+}
+.modal{
+	display: none;
+	width: $adultVerifyW;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	background: #fff;
+	
+	z-index: 10;
+
+	
+}
+.modal-body{
+	padding-bottom: 1em;
+}
+
+// 성인 인증 부분
+.adult-verify{
+	margin-left: -1 * ($adultVerifyW / 2);
+	margin-top: - 190px;
+	//height: 380px;
+	color: #666666;
+	font-size: 16px;
+	border-bottom: 3px solid #db243a;
+
+	&-header{
+
+	}
+
+	.advice{
+		display: block;
+		color: #5d5c5d;
+		font-size: 0.8em;
+		white-space: nowrap;
+		clear: both;
+		padding-left: 9.5em;
+		font-style: normal;
+	}
+	.caution{
+		color: #b91a1c;
+		margin-top: 1em;
+		padding: 1em;
+		line-height: 1.3em;
+		font-size: 14px;
+		word-spacing: -0.25em;
+	}
+
+	.form-horizontal{
+		width: 270px;
+		margin: 0 auto;
+	}
+}
+
+// 입력 그룹 부분
+.form-group{
+	
+	&-row{
+		position: relative;
+		margin: 1em 0;
+		label{
+			display: block;
+			padding-top: 8px;
+			width: 50%;
+			float: left;
+		}
+		input{
+			width: 100%;
+			padding: 5px;
+			box-sizing: border-box;
+			border: 1px solid #c1c1c1;
+		}
+	}
+}
+.input-col{
+	width: 50%;
+	clear: left;
+	display: inline-block;
+
+}
+
+
+// 결제 모달
+.modal-purchase{
+	margin-left: -1 * (346px / 2);
+	margin-top: -300px;
+
+	color: #333;
+	width: 346px;
+	//height: 537px;
+	background: #e9e9e9;
+	border: 8px solid #ccc;
+	box-sizing: border-box;
+	border-radius: 4px;
+	padding: 10px 0 10px 10px;
+
+	.modal-header{
+		font-size: 16pt;
+		font-weight: bold;
+		width: 65%;
+		text-align: center;
+		color: #c00;
+		display: block;
+		margin-bottom: 10pt;
+	}
+
+	.poster,
+	.no-poster{
+		width: 166px;
+		height: 218px;
+	}
+	.desc{
+		box-sizing: border-box;
+		padding: 35px 0 0 10px;
+		width: 150px;
+		font-size: 10pt;
+		font-weight: bold;
+
+		dt{
+			float: left;
+		}
+		dd{
+			padding-left: 3.2em;
+		}
+		dt,dd{
+			margin-bottom: 0.6em;
+		}
+	}
+
+	.notice{
+		font-size: 18px;
+		font-weight: bold;
+		color: #d00;
+		padding-top: 10px;
+		margin-bottom: 10px;
+		&-lesser{
+			display: block;
+			font-size: 14px;
+			color: #333;
+			margin-bottom: 1em;
+		}
+	}
+
+	.btn-purchase-coupon{
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
+}
+
+// 쿠폰 모달
+$modalCouponW: 346px;
+.modal-coupon{
+	margin-left: -1 * ($modalCouponW / 2);
+	margin-top: -300px;
+	background: #E0E2E2;
+
+	color: #333;
+	width: $modalCouponW;
+
+	.input-number{
+		box-sizing: border-box;
+		width: 3.5em;
+		border: 1px solid #A0A0A0;
+		text-align: center;
+		background: #fff;
+		font-size: 16px;
+		padding: 1px 0 0px 0;
+	}
+	.dash{
+		border-top: 1px solid #A0A0A0;
+		display: inline-block;
+		width: 0.75em;
+		color: #e0e2e2;
+		vertical-align: top;
+		margin-top: 10px;
+	}
+	.btn-group{
+		padding-top: 1.5em;
+		padding-bottom: 0.5em;
+	}
+}

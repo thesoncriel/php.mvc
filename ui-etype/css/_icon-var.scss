@@ -1,0 +1,46 @@
+// variables [begin]
+$logoWidth : 95px;
+$logoHeight : 57px;
+
+$iconSize63 : 63px;
+$iconPos63 : 100px;
+$iconSize55 : 55px;
+$iconPos55 : 200px;
+$iconEtcPosX : 400px;
+
+$adultVerifyHeaderH: 100px;
+$adultVerifyHeaderPos: 525px;
+
+$menuWidth : 58px;
+$menuHeight : $menuWidth;
+$menuPosY : 290px;
+$menuPosY_sum : 0;
+$menuPosX_sum : 0;
+
+$iconCloseWidth : 31px;
+$iconCloseHeight : 33px;
+$iconClosePosY : 464px;
+
+$iconEtc33Width : 33px;
+$iconEtc33PosX : 116px;
+$iconEtc33PosY : $iconClosePosY;
+
+$newkeyLogoW: 110px;
+$newkeyLogoH: 65px;
+$newkeyBookBtnW: 49px;
+$newkeyBookBtnH: 95px;
+$newkeyPosH: $adultVerifyHeaderPos + $adultVerifyHeaderH;
+
+$couponBtnW: 115px;
+$couponBtnH: 32px;
+$couponBtnPosY: $newkeyPosH + $newkeyBookBtnH;
+$purchaseBtnW: 152px;
+$purchaseBtnH: 47px;
+$purchaseCouponW: 94px;
+$purchasecouponH: 35px;
+$purchaseBtnPosY: $couponBtnPosY + $couponBtnH;
+
+//$btnSmWidth : 36px;
+$btnSmHeight : 16px;
+$i : 0;
+// variables [end]

@@ -1,0 +1,52 @@
+.plugin-check{
+	padding: 1em;
+	font-size: 12pt;
+	h1{
+		font-size: 2em;
+		margin: 0.5em 0 1em 0;
+	}
+	h2{
+		font-size: 1.35em;
+		margin-bottom: 0.5em;
+	}
+	ul{
+		margin-left: 1em;
+		list-style: circle;
+	}
+	li{
+		margin-bottom: 0.5em;
+	}
+	.done{
+		color: #65d665;
+	}
+	.fail{
+		color: #ff4949;
+	}
+	.notice{
+		line-height: 1.2em;
+		margin-bottom: 1em;
+	}
+	strong{
+		font-weight: bold;
+		color: #66f7fc;
+	}
+	a:link,
+	a:visited,
+	a:active{
+		color: #6670fc;
+	}
+	a:hover{
+		color: #b2b7fb;
+		text-decoration: underline;
+	}
+
+	.loading{
+        bottom: auto;
+        right: auto;
+        top: 50%;
+        text-align: center;
+        .img{
+            margin-left: 32px;
+        }
+    }
+}

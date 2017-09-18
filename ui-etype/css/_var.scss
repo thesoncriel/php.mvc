@@ -1,0 +1,41 @@
+// variables
+$contentH: 583px;
+$detailW: 278px;
+
+$detailPosterW: 185px;
+$detailPosterH: 270px;
+$listItemPosterW: 120px;
+$listItemPosterH: 175px;
+$icon63size: 63px;
+$icon55size: 55px;
+
+$bgBody: #051F3A;
+$bgDetail: #333333;
+$bgListItem: #425A72;
+
+$colorScrollbarThumb: #97A1AD;
+$colorScrollbarTrack: mix( $colorScrollbarThumb, $bgBody );
+
+$adultVerifyW: 490px;
+$bgVerifyApplyS: #fe4259;
+$bgVerifyApplyE: #da011c;
+
+//$bgSubHeader: $bgBody;
+$subHeaderH: 33px;
+$subHeaderPadding: 5px;
+$subCategoryH: 23px;
+$bgSubHeaderCategory: #3598db;
+$bgSubHeaderCategory1st: #2a6791;
+
+// Loading Background
+$bgLoading: $bgBody;
+
+// icon-pack background image
+$urlIconPack: "img/icons.png?v=90";
+$urlIconPackWow: "img/icons.wow.png?v=90";
+
+// newkey comic viewer
+$newkey-pageHeaderH: 40px;
+$newkey-pageCtrlW: 110px;
+$newkey-pageCtrlP: 7px;
+$newkey-bgFore: #e9e9e9;

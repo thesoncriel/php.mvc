@@ -1,0 +1,109 @@
+.sub-header{
+	position: relative;
+	height: $subHeaderH;
+	background: $bgSubHeaderCategory;
+
+	&-inner{
+		padding-top: $subHeaderPadding;
+		box-sizing: border-box;
+		float: left;
+	}
+
+	a{
+		font-size: 13px;
+		font-weight: bold;
+	}
+
+	.category{
+		&-first,
+		&-second{
+
+		}
+	}
+	
+}
+.search-panel{
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	//overflow: hidden;
+
+	input{
+		position: absolute;
+		background: mix($bgSubHeaderCategory, #fff);
+		width: 10em;
+		height: 100%;
+		top: 0;
+		right: 33px;
+		display: block;
+		color: #000;
+		box-sizing: border-box;
+		//border: 1px solid #000;
+		margin: 0;
+		font-size: 14px;
+		padding: 8px 7px;
+	}
+}
+.sub-category{
+	height: $subCategoryH;
+	float: left;
+	&-first{
+		@extend .sub-category;
+		//border-right: 1px solid #fff;
+		//margin-right: 1em;
+
+		.sub-item {
+			//border-right: none;
+			a{
+				background: $bgSubHeaderCategory1st;
+				font-size: 18px;
+			}
+
+			
+		}
+	}
+}
+
+.hover-info{
+	position: absolute;
+	display: block;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	background: #000;
+	text-align: center;
+	padding: 5px 0;
+	font-size: 14px;
+	font-weight: bold;
+	opacity: 0.75;
+	filter: alpha(opacity=75);
+	visibility: hidden;
+}
+
+.list-item{
+	&.hover,
+	&.active{
+		.hover-info{
+			visibility: visible;
+		}
+	}
+}
+
+.mark-new{
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 0.5em;
+}
+.detail-comic{
+	border-right-width: 2px;
+}
+.detail-desc{
+	.each-books{
+		border: 1px solid #fff;
+		clear: left;
+		padding: 3px;
+		margin-right: 10px;
+	}
+}

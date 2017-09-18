@@ -1,0 +1,92 @@
+.btn-verify{
+	width: 98px;
+	height: 30px;
+	//line-height: 30px;
+	font-weight: bold;
+	text-align: center;
+	cursor: pointer;
+	background: none;
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	border: 1px solid #ccc;
+
+	&:visited,
+	&:active{
+		outline: none;
+	}
+}
+
+
+
+.btn-verify{
+	&-apply{
+		@extend .btn-verify;
+		color: #fff;
+		background: -webkit-gradient(linear, left top, left bottom, from(#{$bgVerifyApplyS}), to(#{$bgVerifyApplyE}));
+		background: -webkit-linear-gradient(#{$bgVerifyApplyS}, #{$bgVerifyApplyE});
+		background: linear-gradient(#{$bgVerifyApplyS}, #{$bgVerifyApplyE});
+		//border: 1px solid #ccc;
+
+		&:hover{
+			background: red;
+		}
+	}
+	&-cancel{
+		@extend .btn-verify;
+		//border: 1px solid #ccc;
+
+		&:hover{
+			background: #ddd;
+		}
+	}
+}
+
+.btn-def{
+	text-align: center;
+	text-decoration: none;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	background: #fff;
+	color: #333;
+	position: relative;
+}
+.btn{
+	&-sm{
+		@extend .btn-def;
+		border-radius: 3px;
+		height: $btnSmHeight;
+		margin: 3px 2px;
+		&-book{
+			@extend .btn-sm;
+			display: inline-block;
+			width: 38px;
+		}
+		&-many{
+			@extend .btn-sm-book;
+			letter-spacing: -1px;
+		}
+		&-finish{
+			@extend .btn-sm;
+			position: relative;
+			border: 1px solid #f14815;
+			display: inline-block;
+			background: #f97d58;
+			color: #fff;
+			line-height: 10px;
+			padding: 0 3px;
+			top: -1px;
+			font-style: normal;
+		}
+	}
+}
+.btn-search{
+	cursor: pointer;
+}
+.btn-hidden{
+	width: 1px;
+	height: 1px;
+	position: absolute;
+	top: -40px;
+	overflow: hidden;
+}

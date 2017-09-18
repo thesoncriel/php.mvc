@@ -1,0 +1,262 @@
+@charset "utf-8";
+// jway Web Launcher E-Type
+// Version 2.0
+// icon set
+// ※ 이미지 압축 사이트
+// https://tinypng.com/
+
+// 대상 이미지: img/icons.png
+// 배치 형태 (x,y) - 위치 | 크기 | 개수
+// 로고 - 0,0 | 95,57 | 2
+// Grade 63 - 0,100 | 63,63 | 5
+// Etc 63 - 400,100 | 63,63 | 3
+// Grade 55 - 0,200 | 55,55 | 5
+// Etc 55 - 400,200 | 55,55 | 3
+// Etc 63 - 400,100 | 63,63 | 3
+// Etc 55 - 400,200 | 55,55 | 3
+// 상단 메뉴 아이콘 - 0,N | 58,57 | 8
+// - Menu (Nor) - N = 290
+// - Menu (Over) - N = 348 (+58)
+// - Menu (Push) - N = 406 (+58x2)
+// Close - 0,464 | 31,33 | 3
+
+@import "_icon-var";
+// $urlIconPack: "img/icons.png";
+// └─ 아이콘팩 이미지 경로.
+// _var.scss 에 있음.
+
+.icon-pack{
+	display: inline-block;
+	background: url(#{$urlIconPack}) no-repeat;
+	text-align: left;
+	text-indent: -10em;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.logo-common{
+	@extend .icon-pack;
+	width: $logoWidth;
+	height: $logoHeight;
+}
+.logo-main{
+	@extend .logo-common;
+	background-position: 0 0;
+}
+.logo-playtv{
+	@extend .logo-common;
+	background-position: -$logoWidth 0;
+}
+
+// detail 에서 쓰임
+.icon-63-rating{
+	@extend .icon-pack;
+	width: $iconSize63;
+	height: $iconSize63;
+}
+
+$i : 0;
+@each $keyword in 0, 12, 15, 18, 19 {
+	.icon-63-#{$keyword} {
+		@extend .icon-63-rating;
+		background-position: (-1 * ($i * $iconSize63)) (-1 * $iconPos63);
+	}
+	$i : $i + 1;
+}
+
+.icon-63-troffy {
+	@extend .icon-63-rating;
+	background-position: (-1 * $iconEtcPosX) (-1 * $iconPos63);
+}
+.btn-63-play {
+	@extend .icon-63-rating;
+	background-position: (-1 * ($iconEtcPosX + $iconSize63)) (-1 * $iconPos63);
+
+	&:hover, &.active{
+		background-position: (-1 * ($iconEtcPosX + ($iconSize63 * 2))) (-1 * $iconPos63);
+	}
+}
+
+// list 에서 쓰임
+.icon-55-rating{
+	@extend .icon-pack;
+	width: $iconSize55;
+	height: $iconSize55;
+}
+
+$i : 0;
+@each $keyword in 0, 12, 15, 18, 19 {
+	.icon-55-#{$keyword} {
+		@extend .icon-55-rating;
+		background-position: (-1 * ($i * $iconSize55)) (-1 * $iconPos55);
+	}
+	$i : $i + 1;
+}
+
+.icon-55-troffy {
+	@extend .icon-55-rating;
+	background-position: (-1 * $iconEtcPosX) (-1 * $iconPos55);
+}
+.btn-55-play {
+	@extend .icon-55-rating;
+	background-position: (-1 * ($iconEtcPosX + $iconSize55)) (-1 * $iconPos55);
+
+	&:hover, &.active{
+		background-position: (-1 * ($iconEtcPosX + ($iconSize55 * 2))) (-1 * $iconPos55);
+	}
+}
+
+// 상단 메뉴 아이콘
+.icon-menu{
+	@extend .icon-pack;
+	width: $menuWidth;
+	height: $menuHeight;
+	display: inline-block;
+}
+
+$i : 0;
+@each $keyword in 3d, adult, best, comics, korean, foregin, premium, tv{
+	
+	.icon-#{$keyword} {
+		@extend .icon-menu;
+		background-position: (-1 * ($i * $menuWidth)) (-1 * $menuPosY);
+
+		&:hover{
+			background-position: (-1 * ($i * $menuWidth)) (-1 * ($menuPosY + ($menuWidth)));
+		}
+		&-active{
+			background-position: (-1 * ($i * $menuWidth)) (-1 * ($menuPosY + ($menuWidth * 2)));
+		}
+	}
+	$i : $i + 1;
+}
+
+// 닫기 아이콘
+// Close - 0,464 | 31,33 | 3
+.btn-close{
+	@extend .icon-pack;
+	width: $iconCloseWidth;
+	height: $iconCloseHeight;
+	background-position: 0 (-1 * $iconClosePosY);
+	&:hover{
+		background-position: (-1 * $iconCloseWidth) (-1 * $iconClosePosY);
+	}
+	&:active{
+		background-position: (-1 * ($iconCloseWidth * 2)) (-1 * $iconClosePosY);
+	}
+	cursor: pointer;
+}
+.icon-33-search{
+	@extend .icon-pack;
+	width: $iconEtc33Width;
+	height: $iconEtc33Width;
+	background-position: (-1 * $iconEtc33PosX) (-1 * $iconEtc33PosY);
+}
+
+.icon-caret{
+	@extend .icon-pack;
+	width: 7px;
+	height: 7px;
+	background-position: (-1 * ($iconEtc33PosX + $iconEtc33Width)) (-1 * $iconEtc33PosY);
+}
+.icon-caret-lg{
+	@extend .icon-pack;
+	width: 10px;
+	height: 10px;
+	background-position: (-1 * ($iconEtc33PosX + $iconEtc33Width + 7px)) (-1 * $iconEtc33PosY);
+}
+.icon-caret-gray{
+	@extend .icon-pack;
+	width: 9px;
+	height: 9px;
+	background-position: (-1 * ($iconEtc33PosX + $iconEtc33Width + 17px)) (-1 * $iconEtc33PosY);
+}
+
+// 성인 인증 모달 헤더
+.header-adult-verify{
+	@extend .icon-pack;
+	width: 100%;
+	height: $adultVerifyHeaderH;
+	background-position: 0 (-1 * $adultVerifyHeaderPos);
+}
+
+// 뉴키 코믹 뷰어
+$newkeyPosH: -1 * $newkeyPosH;
+.logo-newkey{
+	@extend .icon-pack;
+	width: $newkeyLogoW - 5px;
+	height: $newkeyLogoH;
+	background-position: 0 $newkeyPosH;
+}
+
+.btn-book-ctrl{
+	@extend .icon-pack;
+	width: $newkeyBookBtnW;
+	height: $newkeyBookBtnH;
+}
+
+$i : 0;
+@each $keyword in prev, "prev-active", "prev:hover", next, "next-active", "next:hover" {
+	.btn-book-#{$keyword} {
+		@extend .btn-book-ctrl;
+		background-position: (-1 * ($newkeyLogoW + ($newkeyBookBtnW * $i))) $newkeyPosH;
+	}
+	$i : $i + 1;
+}
+
+.btn-book-next{
+	&,&:hover,&-active{
+		width: $newkeyBookBtnW - 3px;
+	}
+}
+.btn-page-goto{
+	@extend .icon-pack;
+	width: 32px;
+	height: 19px;
+	background-position: (-1 * ($newkeyLogoW + ($newkeyBookBtnW * $i) + 2px)) $newkeyPosH;
+	vertical-align: middle;
+}
+
+// 구매 (purchase) 부분
+
+.btn{
+	&-coupon{
+		&-back,
+		&-use{
+			@extend .icon-pack;
+			width: $couponBtnW;
+			height: $couponBtnH;
+		}
+		$couponBtnPosY: $couponBtnPosY * -1;
+		&-back{
+			background-position: (-1 * 0) $couponBtnPosY;
+		}
+		&-use{
+			background-position: (-1 * $couponBtnW) $couponBtnPosY;
+		}
+	}
+	&-purchase{
+		&-cancel,
+		&-progress,
+		&-coupon{
+			@extend .icon-pack;
+		}
+		&-cancel,
+		&-progress{
+			width: $purchaseBtnW;
+			height: $purchaseBtnH;
+		}
+		$purchaseBtnPosY: $purchaseBtnPosY * -1;
+		&-cancel{
+			background-position: (-1 * 0) $purchaseBtnPosY;
+		}
+		&-progress{
+			background-position: (-1 * $purchaseBtnW) $purchaseBtnPosY;
+		}
+		&-coupon{
+			width: $purchaseCouponW;
+			height: $purchasecouponH;
+			background-position: (-2 * $purchaseBtnW) $purchaseBtnPosY;
+		}
+	}
+}

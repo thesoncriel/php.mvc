@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Newkey Comic Viewer</title>
+	<link rel="stylesheet" href="css/index.css">
+	<!--[if lte IE 9]>
+	<link rel="stylesheet" href="css/ie.css?v=6">
+	<![endif]-->
+	<script>var __comic__ = {"serial":"10027","title":"\uac1c\ub4e4\uc758\ub9cc\ucc2c","grade":"1","thumb_path":"\/data\/contents\/27\/2017051708354910027.jpg","finish":"0","regdate":"2017-06-27","books":"19","series":"4","keyword":"\uac1c\ub4e4\uc758\ub9cc\ucc2c,\ubc15\uc778\uad8c,KOCN","summary":"\uc870\uae08 \ub9dd\uac00\uc9c4 \ub188\ub4e4\uc758 \uc804\uc7c1\uc774 \uc2dc\uc791\ub418\uc5c8\ub2e4. \uc778\uac04\uc740 \ub204\uad6c\ub098 \uc591\uacfc \ub291\ub300\uc911\uc5d0 \ud558\ub098\uc758 \uc778\uaca9\uc744 \uac00\uc9c0\uace0 \ud0dc\uc5b4\ub09c\ub2e4. \ub2e8,\uadf8\uac83\uc758 \uc120\ud0dd\uc740 \ub0b4\uac00 \uc544\ub2cc \ub0a8\uc774 \ud574\uc904 \ubfd0\uc774\ub2e4.\r\n","genre":"8","genre_name":"\uc561\uc158","pub_name":"KOCN","cp_name":"KOCN","am_name":"\ubc15\uc778\uad8c","as_name":"\ubc15\uc778\uad8c","bookno": "3"
+	,"send_bill_interval": "2"
+	,"contents_server_path":"/comic/kocn/parkinkwon/parkinkwon_79/","category":"comic","each_books":[{"book_serial":"142010","bookno":"1","state":"1"},{"book_serial":"142011","bookno":"2","state":"1"},{"book_serial":"142012","bookno":"3","state":"1"},{"book_serial":"142101","bookno":"4","state":"1"},{"book_serial":"142102","bookno":"5","state":"1"},{"book_serial":"142103","bookno":"6","state":"1"},{"book_serial":"142240","bookno":"7","state":"1"},{"book_serial":"142241","bookno":"8","state":"1"},{"book_serial":"142242","bookno":"9","state":"1"},{"book_serial":"142331","bookno":"10","state":"1"},{"book_serial":"142332","bookno":"11","state":"1"},{"book_serial":"142333","bookno":"12","state":"1"},{"book_serial":"142463","bookno":"13","state":"1"},{"book_serial":"142464","bookno":"14","state":"1"},{"book_serial":"142465","bookno":"15","state":"1"},{"book_serial":"142608","bookno":"16","state":"1"},{"book_serial":"142609","bookno":"17","state":"1"},{"book_serial":"142610","bookno":"18","state":"1"},{"book_serial":"142611","bookno":"19","state":"1"},{"book_serial":"142844","bookno":"20","state":"2"},{"book_serial":"142845","bookno":"21","state":"2"},{"book_serial":"142846","bookno":"22","state":"2"},{"book_serial":"142847","bookno":"23","state":"2"}
+	,{"book_serial":"142847","bookno":"30","state":"2"}
+	]};</script>
+	<script src="js/libs.min.js"></script>
+	<script src="js/index.js"></script>
+</head>
+<body>
+<div id="comicviewer" class="comicviewer">
+	<div class="page-header">
+		<h1 class="title"><i class="icon-caret-lg"></i> <!-- ko text: title --><!-- /ko --> <small data-bind="text: author"></small>
+		</h1>
+	</div>
+	<div class="comicviewer-container">
+		<div class="viewport">
+			<div id="bookImg0" data-auto-size="true" data-aside-bottom=".aside-bottom" data-aside-top=".page-header">
+				<div class="flash-download">
+                    <h1>FlashImageComponent</h1>
+                    <p><a href="http://www.adobe.com/go/getflashplayer">Get Adobe Flash player</a></p>
+                </div>
+			</div><div id="bookImg1" data-auto-size="true" data-aside-bottom=".aside-bottom" data-aside-top=".page-header"></div>
+			<!--[if lte IE 6]>
+			<img src="css/img/page_ratio_cover.png" class="page-cover-left" data-bind="click: onPrevClick"><img src="css/img/page_ratio_cover.png" class="page-cover-right" data-bind="click: onNextClick">
+			<![endif]-->
+			<div id="panel_err" class="hidden">감상할 만화 정보가 존재하지 않습니다.</div>
+		</div>
+		<div class="viewport viewport-page-cover">
+			<img src="css/img/page_ratio_cover.png" class="page-cover-left" data-bind="click: onPrevClick"><img src="css/img/page_ratio_cover.png" class="page-cover-right" data-bind="click: onNextClick">
+		</div>
+	</div>
+	
+	<div class="page-ctrl">
+		<h2 class="logo-newkey">뉴키</h2>
+
+		<form action="#/goto" method="post">
+			<div class="input-group">
+				<label for=""><i class="icon-caret-gray"></i> 다른 권 보기</label>
+				<select name="books" class="form-control" data-bind="options: each_books, optionsText: bookOptText, optionsValue: 'bookno', value: bookno, event: {change: onBookSelect}"></select>
+			</div>
+			
+			<div class="input-group">
+				<label for=""><i class="icon-caret-gray"></i> 페이지 이동</label>
+				<input type="text" name="page" class="input-goto-page" autocomplete="off" data-bind="value: page, disable: preventAction, event: {focus: onGotoPageFocus, click: onGotoPageFocus}"> / <span data-bind="text: max"></span>
+				<button type="submit" data-bind="disable: preventAction">Go</button>
+			</div>
+			
+			<div class="input-group">
+				<label for=""><i class="icon-caret-gray"></i> 자동 넘기기</label>
+				<select name="auto_read" class="form-control" data-bind="value: autoRead, disable: disable, event: {change: onAutoReadChange}">
+					<option value="0">수동</option>
+					<option value="5">5초</option>
+					<option value="10">10초</option>
+					<option value="15">15초</option>
+					<option value="20">20초</option>
+				</select>
+				<label class="input-checkbox"><input type="checkbox" name="auto_book" data-bind="checked: autoBook, disable: disable"> 권 자동</label>
+			</div>
+			
+			<div class="input-group">
+				<label for=""><i class="icon-caret-gray"></i> 보기 모드</label>
+				<select name="view_mode" class="form-control" data-bind="value: viewMode, disable: preventAction, event: {change: onViewModeChange}">
+					<option value="2">두장씩 보기</option>
+					<option value="1">한장씩 보기</option>
+				</select>
+			</div>
+
+			<div class="input-group">
+				<label for=""><i class="icon-caret-gray"></i> 넘기기 방향</label>
+				<select name="read_dir" class="form-control" data-bind="value: readDir, disable: disable, event: {change: onReadDirChange}">
+					<option value="0">왼쪽▶오른쪽</option>
+					<option value="1">왼쪽◀오른쪽</option>
+				</select>
+				<strong class="attention" data-bind="visible: readDir() == 1">다음: 왼쪽 클릭</strong>
+			</div>
+		</form>
+		
+
+		<div class="btn-group">
+			<a href="#" class="btn-book-prev" data-bind="click: onPrevClick">이전</a><a href="#" class="btn-book-next" data-bind="click: onNextClick">다음</a>
+			<div class="clear-fix"></div>
+			<strong class="attention" data-bind="visible: autoRead() > 0">이전/다음 수동 기능 사용 불가</strong>
+		</div>
+	</div>
+	<div class="loading">
+		<div class="img"></div>
+	</div>
+	<div class="aside-bottom">
+		<iframe src="viewer_ad.html" frameborder="0"></iframe>
+	</div>
+</div>
+</body>
+</html>

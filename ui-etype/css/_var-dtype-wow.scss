@@ -1,0 +1,9 @@
+// D-Type Only Variables
+$dtypeDecSize: 30px; // 15px decrease each sides
+$contentH: $contentH - $dtypeDecSize;
+$detailW: $detailW - $dtypeDecSize;
+$detailPosterW: $detailPosterW - $dtypeDecSize;
+$detailPosterH: $detailPosterH - ($dtypeDecSize * 1.46);
+
+//$comicBookButtonWrapperPaddingL: 6px;
+//$comicBookButtonWrapperMarginR: 0px;

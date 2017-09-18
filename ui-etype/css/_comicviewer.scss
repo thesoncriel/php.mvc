@@ -1,0 +1,173 @@
+@charset "utf-8";
+
+.comicviewer{
+	color: #333;
+	.page-header{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: $newkey-pageHeaderH;
+		background: $newkey-bgFore;
+		border-bottom: 2px solid #888;
+		z-index: 2;
+
+		.title{
+			margin: 10px 0 0 20px;
+			font-weight: bold;
+			font-size: 15px;
+
+			small{
+				font-weight: normal;
+				margin-left: 0.75em;
+				padding-left: 10px;
+				padding-bottom: 2px;
+				border-left: 3px solid #ccc;
+			}
+		}
+	}
+	&-container{
+		display: inline;
+	    //background: gray;
+	    background-color: #ccc;
+	    position: absolute;
+	    left: 0%;
+	    top: 40px;
+	    right: $newkey-pageCtrlW + ($newkey-pageCtrlP * 2);
+	    bottom: 100px;
+	    //width: 100%;
+	    //border-bottom: 10px solid #f88;
+	    text-align: center;
+	    white-space: nowrap;
+	}
+	.viewport{
+		height: 100%;
+    	margin: 0 auto;
+
+    	img{
+    		height: 100%;
+    	}
+	}
+	.logo-newkey{
+		margin: 1em 0 2em 0;
+	}
+	.page-ctrl{
+		width: $newkey-pageCtrlW;
+	    height: 100%;
+	    background: $newkey-bgFore;
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    padding: ($newkey-pageHeaderH + 10px) $newkey-pageCtrlP 0 $newkey-pageCtrlP;
+	    border-left: 2px solid #f4f4f4;
+
+	    .btn-group{
+	    	text-align: center;
+	    }
+	}
+	.input-group{
+		margin-bottom: 1em;
+		padding-bottom: 0.5em;
+		border-bottom: 1px dashed #888;
+		label{
+			display: block;
+			margin-bottom: 0.5em;
+		}
+		input,
+		select{
+			border: 1px solid #888;
+			background: #fff;
+		}
+		.input-checkbox>input{
+		    vertical-align: middle;
+		}
+		input,
+		select,
+		span{
+			vertical-align: middle;
+		}
+	}
+	.form-control{
+    	width: 100%;
+		height: 1.7em;
+    }
+	.aside-bottom{
+	    background: #444;
+	    position: absolute;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    width: 100%;
+	    height: 100px;
+	    text-align: center;
+
+	    iframe{
+	    	display: inline-block;
+	    	margin-top: 5px;
+	    	width: 970px;
+	    	height: 90px;
+	    	overflow: hidden;
+	    }
+
+	}
+	.w728 iframe{
+    	width: 728px;
+    }
+	.loading{
+
+		//right: 126px;
+	    //bottom: 100px;
+	    width: 32px;
+	    //left: auto;
+	    //top: auto;
+	    left: 50%;
+	    top: 50%;
+	    margin-top: -32px;
+	    margin-left: (-1 * ($newkey-pageCtrlW)) + 32px;
+	}
+	.attention{
+		color: #a33;
+	}  
+}
+
+.input-goto-page{
+	width: 30px;
+	text-align: right;
+}
+
+.viewport-page-cover{
+	@extend .viewport;
+	position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.page-cover{
+	display: inline-block;
+	//height: 100%;
+	//background: rgb(100,0,0);
+	//filter: alpha(opacity=50);
+	//opacity: 0.5;
+	z-index: 1;
+}
+.page-cover-left{
+	@extend .page-cover;
+	cursor: url(/CE/css/img/arrow_left.cur), default;
+}
+.page-cover-right{
+	@extend .page-cover;
+	//background: rgb(0,100,0);
+	cursor: url(/CE/css/img/arrow_right.cur), default;
+}
+
+
+.flash-download{
+    display: block;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: #051F3A;
+}

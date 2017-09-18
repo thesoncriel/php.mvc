@@ -1,0 +1,35 @@
+<div id="panel_adultContentList" class="sortable-wrap">
+	<!-- <div class="vertical-timeline-background" vertical-timeline min="0" max="24"></div> -->
+	<div class="hidden">
+		<form name="form_adultScheduleOrderChange" action="/exec/stb/schedule.order.change.php" method="post" ng-asyncform="" param="param_oc">
+			<input type="text" name="schedule_id"/>
+			<input type="text" name="dt_from"/>
+			<input type="text" name="dt_to"/>
+			<input type="text" name="running_time"/>
+		</form>
+	</div>
+	<div class="broadcast-schedule" as-sortable="sortableOption" ng-model="list">
+		<div ng-repeat="item in list" ng-style="{'height': calcHeight( item.running_time ) + '%'}" as-sortable-item>
+			<div class="clearfix" as-sortable-item-handle="" ng-if="item.dt_bc_start > dtServer">
+				<strong class="text-info">[{{hmFormat(item.dt_bc_start)}}]</strong>
+				<span>({{hmsFormat(item.running_time)}})</span> 
+				{{item.title}}
+
+				<button class="btn btn-xs btn-danger pull-right" ng-click="onDeleteClick(item, $index)">
+					<i class="glyphicon glyphicon-trash"></i>
+				</button>
+				<!-- <button class="btn btn-xs btn-info pull-right" ng-click="onAdvModifyClick(item, $index)">
+					<i class="glyphicon glyphicon-import"></i>
+				</button> -->
+			</div>
+			<div class="clearfix" no-drag="" is-disabled="" ng-if="item.dt_bc_start <= dtServer">
+				<strong class="text-default">[{{hmFormat(item.dt_bc_start)}}]</strong>
+				<span>({{hmsFormat(item.running_time)}})</span>
+				{{item.title}}
+				<!-- <button class="btn btn-xs btn-default pull-right" ng-click="onAdvDetailClick(item, $index)">
+					<i class="glyphicon glyphicon-import"></i>
+				</button> -->
+			</div>
+	    </div>
+	</div>
+</div>

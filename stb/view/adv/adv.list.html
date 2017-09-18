@@ -1,0 +1,49 @@
+<div id="panel_advertise" ng-controller="AdvertiseListController">
+	<form class="form-inline" name="form_advertiseList" action="/exec/stb/adv.list.php" method="post" ng-asyncform="auto" param="param">
+		<input class="hidden" type="text" name="page">
+		<input class="hidden" type="text" name="count">
+
+		<div class="form-group">
+			<input type="text" name="keyword" class="form-control" ng-model="param.keyword">
+		</div>
+		<button type="submit" class="btn btn-primary">검색</button>
+	</form>
+	<var ng-init="typeCase={'0': '없음', '1': 'HTML', '2': 'VOD'}"></var>
+	<table class="table table-hover table-pointer">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>제목</th>
+				<th>형태</th>
+				<th>사용</th>
+				<th>시간</th>
+				<th>입력일</th>
+				<th>미리보기</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list" ng-click="onItemClick(item)" ng-class="{'bg-info': item.adv_use == 'Y'}">
+				<td>{{item.adv_id}}</td>
+				<td>{{item.adv_title}}</td>
+				<td ng-class="{'text-muted': item.adv_type == '0'}">{{typeCase[item.adv_type]}}</td>
+				<td>
+					<strong ng-class="{'text-primary': item.adv_use == 'Y'}">{{item.adv_use}}</strong>
+					
+					<!-- <strong class="text-primary" ng-if="item.adv_use == 'Y'">예</strong> -->
+				</td>
+				<td>{{item.duration}}</td>
+				<td>{{item.dt_insert}}</td>
+				<td><a ng-href="{{item.url}}" target="_blank" ng-click="$event.stopPropagation()">보기</a></td>
+			</tr>
+			<tr ng-if="list.length == 0">
+				<td colspan="7" class="text-center">광고 자료가 없습니다.</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="text-right">
+		<button type="button" class="btn btn-primary" ng-click="onAddClick()">추가</button>
+	</div>
+	<div class="text-center">
+        <ul uib-pagination ng-model="param.page" items-per-page="param.count" total-items="totalcount" max-size="5" previous-text="이전" next-text="다음" ng-change="onPageChange()"></ul>
+    </div>
+</div>

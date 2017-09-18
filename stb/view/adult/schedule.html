@@ -1,0 +1,47 @@
+<div id="panel_adultSchedule" ng-controller="AdultScheduleSortableController">
+	<form name="form_adultScheduleInsert" class="hidden" action="/exec/stb/schedule.insert.php" method="post" ng-asyncform="" param="param_ins">
+		<input type="text" name="dt_bc_start">
+		<input type="text" name="content_id">
+		<input type="text" name="running_time">
+	</form>
+	<form name="form_adultScheduleDelete" class="hidden" action="/exec/stb/schedule.delete.php" method="post" ng-asyncform="" param="param_del">
+		<input type="text" name="schedule_id"/>
+	</form>
+	<div class="row">
+		<div class="col-xs-6">
+			<div day-selector="" options="daySelectorOptions" type="day">
+				{{year}}년 {{month}}월 {{day}}일 ({{weekdayKor}})
+			</div>
+			<form name="form_adultScheduleList" class="hidden" action="/exec/stb/schedule.list.php" method="post" ng-asyncform="" param="param">
+				<input type="text" name="date">
+				<button type="submit" class="btn">검색</button>
+			</form>
+			<div class="column" data-ui-view="schedule" data-autoscroll="false" ng-class="view-ani"></div>
+		</div>
+		<div class="col-xs-6">
+			<div class="position-fixed w25p">
+				<var ng-init="msgAdtermSuccess='광고 시간이 적용 되었습니다.'"></var>
+				<var ng-init="msgAutoSuccess='스케줄이 자동생성 되었습니다.\n채널1: %n1개\n채널2: %n2개'"></var>
+				<form class="form-inline" name="form_adultScheduleAdTerm" action="/exec/stb/schedule.update.adterm.php" method="post" ng-asyncform=""  confirm="광고 시간을 적용 하시겠습니까?">
+					<div class="form-group">
+						<label for="">광고시간 설정</label>
+						<input class="form-control" type="text" name="ad_term" ng-model="config.adTerm">
+					</div>
+					<button type="submit" class="btn btn-warning">적용</button>
+				</form>
+
+				<form name="form_adultScheduleAppendAuto" class="pull-right" action="/exec/stb/schedule.append.auto.php" method="post" ng-asyncform=""  confirm="자동생성을 하시겠습니까?">
+					<button type="submit" class="btn btn-primary">자동생성</button>
+				</form>
+				
+				<form name="form_adultContentList" class="" action="/exec/stb/content.list.php" method="post" ng-asyncform="auto" param="param_cont">
+					<input type="text" name="keyword" ng-model="param_cont.keyword">
+					<input type="text" name="page" class="hidden" ng-model="param_cont.page"/>
+					<input type="text" name="count" class="hidden" ng-model="param_cont.count"/>
+					<button type="submit" class="btn">검색</button>
+				</form>
+				<div class="column clearfix" data-ui-view="content" data-autoscroll="false" ng-class="view-ani"></div>
+			</div>
+		</div>
+	</div>
+</div>

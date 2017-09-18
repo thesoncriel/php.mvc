@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+//// 와우시네 처리 추가
+$bgBody: #00A0E9;
+$bgListItem: #006492;
+// Loading Background
+$bgLoading: #051F3A;
+
+.wow{
+	// _icons
+	.icon-pack{
+		background-image: url(#{$urlIconPackWow});
+	}
+	// _body
+	.list-item{
+		background: $bgListItem;
+		border: 3px $bgBody solid;
+		&:hover,
+		&.hover{
+			border-color: mix( #ff0, $bgBody );
+		}
+		&:active,
+		&.active{
+			border-color: #ff0;
+		}
+	}
+	.loading{
+		background-color: $bgLoading;
+	}
+}
+body.wow{
+	background: $bgBody;
+}
+
+
+//// D-Type 처리 추가
+@import "_var-dtype-wow";
+
+.dtypewow {////////////////////////////////////////////
+
+// _icons
+.btn-close{
+	visibility: hidden;
+}
+// _body
+.detail{
+	width: $detailW;
+	height: $contentH - 3px;
+}
+.detail-figure{
+	height: $detailPosterH;
+}
+.list{
+	padding-left: $detailW;
+}
+.detail{
+	.poster, .no-poster{
+		width: $detailPosterW;
+		height: $detailPosterH;
+	}
+}
+.list-item{
+	.poster, .no-poster {
+		width: $listItemPosterW;
+		height: $listItemPosterH;
+	}
+}
+// _scroll
+#movie_list {
+	height: $contentH;
+}
+#comic_list {
+	height: $contentH - $subHeaderH;
+}
+.detail-comic{
+	height: $contentH - $subHeaderH - 3px;
+}
+
+
+}// .dtypewow [end]////////////////////////////////////////////

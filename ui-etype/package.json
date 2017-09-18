@@ -1,0 +1,30 @@
+{
+  "name": "ptv-etype-new",
+  "version": "1.0.0",
+  "description": "etype web client main page",
+  "main": "main_page.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "etype",
+    "cienhotel"
+  ],
+  "author": "TheSON",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-concat-sourcemap": "^0.4.3",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-mkdir": "^1.0.0",
+    "grunt-sftp-deploy": "^0.2.5",
+    "grunt-yui-compressor": "^0.4.0",
+    "node-sass": "^4.5.3"
+  }
+}

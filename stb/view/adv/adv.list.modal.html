@@ -1,0 +1,69 @@
+<div class="modal-header">
+	<h3 class="modal-title">{{schedule.title}} ({{schedule.schedule_id}})</h3>
+</div>
+<div class="modal-body">
+	<form class="hidden" name="form_advForModal" action="/exec/stb/adv.detail.php" ng-asyncform="auto" param="param_adv">
+		<input type="text" name="adv_id">
+	</form>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			현재 적용중인 광고
+		</div>
+		<div class="panel-body bg-danger" ng-if="schedule.adv_id < 1">
+			<strong>없음 (기본 광고) - {{adv.adv_title}}</strong>
+			<a class="pull-right" ng-href="{{adv.url}}" target="_blank">미리보기</a>
+		</div>
+		<div class="panel-body bg-info" ng-if="schedule.adv_id >= 1">
+			<strong>{{adv.adv_title}}</strong>
+			<a class="pull-right" ng-href="{{adv.url}}" target="_blank">미리보기</a>
+		</div>
+	</div>
+
+	<form class="form-inline" name="form_advListForModal" action="/exec/stb/adv.list.php" ng-asyncform="auto" param="param">
+		<input class="hidden" type="text" name="page">
+		<input class="hidden" type="text" name="count">
+
+		<div class="form-group">
+			<input type="text" name="keyword" class="form-control" ng-model="param.keyword">
+		</div>
+		<button type="submit" class="btn btn-primary">검색</button>
+	</form>
+	<table class="table table-pointer">
+		<thead>
+			<tr>
+				<th>제목</th>
+				<th>형태</th>
+				<th>기본</th>
+				<th>시간</th>
+				<th>입력일</th>
+				<th>미리보기</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list" ng-click="onItemClick(item)" ng-class="{'bg-success': item.selected}" uib-tooltip="{{item.adv_desc}}">
+				<td>{{item.adv_title}}</td>
+				<td ng-class="{'text-muted': item.adv_type == '0'}">{{typeCase[item.adv_type]}}</td>
+				<td>
+					<strong class="text-danger" ng-if="item.adv_def == 'Y'">예</strong>
+				</td>
+				<td>{{item.delay}}</td>
+				<td>{{item.dt_insert}}</td>
+				<td><a ng-href="{{item.url}}" target="_blank" ng-click="$event.stopPropagation()">보기</a></td>
+			</tr>
+			<tr ng-if="list.length == 0">
+				<td colspan="7" class="text-center">광고 자료가 없습니다.</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="text-center">
+        <ul uib-pagination ng-model="param.page" items-per-page="param.count" total-items="totalcount" max-size="5" previous-text="이전" next-text="다음" ng-change="onPageChange()"></ul>
+    </div>
+    <form class="form-inline" name="form_advApplyForModal" action="ctrl/adult/schedule.update.adv.php" method="post" ng-asyncform="" param="param_apply">
+		<input class="hidden" type="text" name="schedule_id">
+		<input class="hidden" type="text" name="adv_id">
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-danger" type="button" ng-click="cancel()">취소</button>
+	<button class="btn btn-primary" type="button" ng-disabled="!selectedItem" ng-click="apply()">적용</button>
+</div>

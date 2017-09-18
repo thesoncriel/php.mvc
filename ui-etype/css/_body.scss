@@ -1,0 +1,288 @@
+@charset "utf-8";
+
+body{
+	background: $bgBody;
+	color: #fff;
+	font-size: 12px;
+}
+.container{
+	position: relative;
+	margin: 6px;
+}
+.header{
+	width: 100%;
+	padding: 2px 8px;
+	margin-bottom: 5px;
+}
+
+.cust-name{
+	display: block;
+	margin-top: 0.35em;
+	font-size: 14px;
+}
+
+.close-section{
+	@extend .pos-rt;
+	text-align: right;
+	width: 20em; 
+}
+
+.btn-close{
+	display: inline-block;
+}
+.menu{
+	display: inline-block;
+	cursor: default;
+}
+.menu-item{
+	display: inline-block;
+	box-sizing: border-box;
+	margin-left: 28px;
+}
+
+
+
+.sub-item{
+	float: left;
+	border-right: 1px solid #fff;
+	height: 23px;
+
+
+
+	a:link,
+	a:visited{
+		
+	}
+
+	a{
+		color: #fff;
+		display: block;
+		width: 70px;
+		height: 33px;
+		margin-top: -5px;
+		text-align: center;
+		box-sizing: border-box;
+		
+		text-decoration: none;
+		line-height: 32px;
+
+		&:hover{
+			color: mix($bgSubHeaderCategory, #fff, 30);
+		}
+	}
+
+	.active{
+		color: #ff0;
+		&:hover{
+			color: mix($bgSubHeaderCategory, #ff0, 30);
+		}
+	}
+
+	&-first{
+		@extend .sub-item;
+		border-left: 1px solid #fff;
+	}
+}
+
+// .section-tv{
+// 	img{
+// 		height: $contentH - 3px;
+// 	}
+// }
+
+
+
+.detail{
+	position: relative;
+	width: $detailW;
+	height: $contentH - 3px;
+	border: 9px solid $bgDetail;
+	margin-top: 3px;
+	//padding: 9px;
+	background: $bgDetail;
+	box-sizing: border-box;
+	clear: both;
+	float: left;
+	z-index: 1;
+}
+.detail-inner{
+	height: 100%;
+}
+.detail-title{
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+.detail-figure{
+	height: $detailPosterH;
+	position: relative;
+	margin-bottom: 1em;
+}
+.detail-desc{
+	dt,dd{
+		margin-bottom: 0.75em; 
+	}
+	dt {
+		float: left;
+		&:before{
+			//content: "• ";
+		}
+	}
+	dd {
+		padding-left: 5.5em;
+		&:before{
+			//content: ": ";
+		}
+	}
+	.synopsis{
+		clear: left;
+		padding-left: 0;
+		line-height: 1.5em;
+	}
+}
+.list{
+	padding-left: $detailW;
+	position: relative;
+}
+.list-inner{
+	//padding-bottom: 3px;
+}
+.list-item{
+	width: $listItemPosterW + $icon55size;
+	height: $listItemPosterH;
+	position: relative;
+	background: $bgListItem;
+	border: 3px $bgBody solid;
+	float: left;
+	margin-right: -3px;
+	margin-bottom: -3px;
+	cursor: pointer;
+
+	.btn-55-play{
+		visibility: hidden;
+	}
+
+	&:hover,
+	&.hover,
+	&:active,
+	&.active{
+		.btn-55-play{
+			visibility: visible;
+		}
+	}
+
+	&:hover,
+	&.hover{
+		border-color: mix( #ff0, $bgBody );
+		z-index: 1;
+	}
+
+	&:active,
+	&.active{
+		border-color: #ff0;
+		z-index: 2;
+		cursor: pointer;
+	}
+}
+
+.poster, .no-poster{
+	border: none;
+}
+.no-poster{
+	background: #070707 url(img/no_poster.jpg) no-repeat 50% 50%;
+}
+
+.detail{
+	.poster, .no-poster{
+		width: $detailPosterW;
+		height: $detailPosterH;
+	}
+}
+.list-item{
+	.poster, .no-poster {
+		width: $listItemPosterW;
+		height: $listItemPosterH;
+	}
+}
+
+
+.loading{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 32px;
+	width: 100%;
+	float: left;
+	background-color: $bgLoading;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+	.img{
+		height: 100%;
+		background: url(img/loader_3.gif) no-repeat 47% 50%;
+	}
+
+	&-covered{
+		@extend .loading;
+		display: none;
+		left: 0;
+		height: 100%;
+
+		.img{
+			left: 50%;
+			background-position: 50% 50%;
+		}
+	}
+}
+
+// 한달정도 지나서 .comicviewer-trigger 는 삭제..
+.comicviewer-trigger,
+.outer-trigger{
+	width: 1px;
+	height: 1px;
+	z-index: -1;
+	position: absolute;
+	filter: alpha(opacity=10);
+	margin-top: -1px;
+}
+
+.pos-right{
+	position: absolute;
+	right: 0;
+}
+.pos-rt{
+	@extend .pos-right;
+	top: 0;
+}
+.pos-rm{
+	@extend .pos-right;
+	right: 0%;
+	top: 50%;
+}
+.pos-rm-63{
+	@extend .pos-rm;
+	margin-top: -($icon63size/2 + 1);
+}
+.pos-rm-55{
+	@extend .pos-rm;
+	margin-top: -($icon55size/2 + 1);
+}
+.pos-rb{
+	@extend .pos-right;
+	bottom: 0;
+}
+
+.clear-fix{
+	clear: both;
+}
+.text-center{
+	text-align: center;
+}
+.pull-left{
+	float: left;
+}
+.pull-right{
+	float: right;
+}
+.hidden{
+	display: none;
+}
