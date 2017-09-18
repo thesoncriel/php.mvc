@@ -76,7 +76,6 @@ CSS는 SASS를 활용하였으며 컴파일러로 koala를 함께 이용 하였�
 ![](https://github.com/thesoncriel/php.mvc/blob/master/screenshots/006.png)
 ![](https://github.com/thesoncriel/php.mvc/blob/master/screenshots/007.png)
 ![](https://github.com/thesoncriel/php.mvc/blob/master/screenshots/008.png)
-![](https://github.com/thesoncriel/php.mvc/blob/master/screenshots/009.png)
 
 ### VODS - Comic Viewer
 ![](https://github.com/thesoncriel/php.mvc/blob/master/screenshots/comicviewer.png)
