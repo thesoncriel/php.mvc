@@ -6,10 +6,8 @@ module.exports = function(grunt){
 	var sSrcPath = "lib/src/"
 	,	sBowerPath = "bower_components/"
 	,	sJsPath = "js/"
-	//,	sFTPHost = "211.43.189.155"
-	//,	sAuthKey = "root(155)"
-	,	sFTPHost = "211.239.121.22"
-	,	sAuthKey = "root"
+	,	sFTPHost = "IP"
+	,	sAuthKey = "user"
 	,	aLib
 	,	aDebugLib
 	,	aModules
